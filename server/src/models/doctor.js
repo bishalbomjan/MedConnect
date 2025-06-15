@@ -10,5 +10,5 @@ const doctorSchema = new Schema({
     body: String, date: Date 
   }]
 });
-const User = mongoose.model("User", userSchema);
-export default User;
+const Doctor = mongoose.model("Doctor", doctorSchema);
+export default Doctor;
