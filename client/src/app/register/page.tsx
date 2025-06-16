@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { User, Mail, Phone, MapPin, Lock, Stethoscope } from 'lucide-react';
 import Link from 'next/link';
 import axios from 'axios';
+import { toast } from 'sonner';
 
 
 // Validation schema using Yup
@@ -52,8 +53,8 @@ const Register = () => {
 
 
     const handleSubmit = async (values: typeof initialValues, { setSubmitting }: any) => {
-        const data = await axios.post('http://localhost:8080/register', values)
-
+        const { data } = await axios.post('http://localhost:8080/register', values)
+        toast(data)
     };
 
     return (
