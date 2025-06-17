@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Mail, Lock, Stethoscope } from 'lucide-react';
 import { toast } from 'sonner';
 import Link from 'next/link';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 // Validation schema using Yup
 const signInSchema = Yup.object().shape({
@@ -27,22 +29,11 @@ const initialValues = {
 };
 
 const SignIn = () => {
-
+    const router = useRouter()
     const handleSubmit = async (values: typeof initialValues, { setSubmitting }: any) => {
-        try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
-            console.log('Sign in data:', values);
-
-            toast.success('Sign In Successful! Welcome back to MedConnect!');
-
-            setSubmitting(false);
-        } catch (error) {
-            toast.error('Sign In Failed: Invalid email or password. Please try again.');
-
-            setSubmitting(false);
-        }
+        const { data } = await axios.post('http://localhost:8080/login', values)
+        if (data?.isLoggedIn) router.push('/')
+        toast(data?.message)
     };
 
     return (
