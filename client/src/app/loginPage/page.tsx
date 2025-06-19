@@ -11,6 +11,8 @@ import { toast } from 'sonner';
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { addLoginDetails } from '@/redux/reducerSlices/userSlice.js';
 
 // Validation schema using Yup
 const signInSchema = Yup.object().shape({
@@ -22,18 +24,26 @@ const signInSchema = Yup.object().shape({
         .required('Password is required'),
 });
 
-// Initial form values
-const initialValues = {
-    email: '',
-    password: '',
-};
+
 
 const SignIn = () => {
+    // Initial form values
+    const initialValues = {
+        email: '',
+        password: '',
+    };
+    const dispatch = useDispatch();
     const router = useRouter()
     const handleSubmit = async (values: typeof initialValues, { setSubmitting }: any) => {
         const { data } = await axios.post('http://localhost:8080/login', values)
-        if (data?.isLoggedIn) router.push('/')
         toast(data?.message)
+        if (data) {
+            dispatch(addLoginDetails(data))
+        }
+        if (data?.isLoggedIn) router.push('/')
+        setTimeout(() => {
+            setSubmitting(false);
+        }, 1000)
     };
 
     return (

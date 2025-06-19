@@ -5,10 +5,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Stethoscope, Users, Shield, Heart } from 'lucide-react';
 import Link from 'next/link';
 import './index.css'
+import { useSelector } from 'react-redux';
+
 
 const Index = () => {
-
-
+  const { email } = useSelector(state => state.user)
   const features = [
     {
       icon: Stethoscope,
@@ -35,6 +36,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-medconnect-pale-green via-white to-medconnect-light-green">
       {/* Header */}
+      {email}
       <header className="bg-white/80 backdrop-blur-sm border-b border-medconnect-light-green/30 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
