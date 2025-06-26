@@ -4,54 +4,51 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Stethoscope, Users, Shield, Heart } from 'lucide-react';
 import Link from 'next/link';
-import './index.css'
 import { useSelector } from 'react-redux';
 
-
 const Index = () => {
-  const { email } = useSelector(state => state.user)
+  const { email } = useSelector(state => state.user);
   const features = [
     {
       icon: Stethoscope,
       title: 'Expert Care',
-      description: 'Connect with qualified healthcare professionals'
+      description: 'Connect with qualified healthcare professionals',
     },
     {
       icon: Users,
       title: 'Community',
-      description: 'Join a trusted network of patients and doctors'
+      description: 'Join a trusted network of patients and doctors',
     },
     {
       icon: Shield,
       title: 'Secure',
-      description: 'Your health data is protected and confidential'
+      description: 'Your health data is protected and confidential',
     },
     {
       icon: Heart,
       title: 'Personalized',
-      description: 'Tailored healthcare solutions for your needs'
-    }
+      description: 'Tailored healthcare solutions for your needs',
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-medconnect-pale-green via-white to-medconnect-light-green">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
       {/* Header */}
-      {email}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-medconnect-light-green/30 sticky top-0 z-50">
+      <header className="bg-white/80 backdrop-blur-sm border-b border-green-100 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <div className="bg-medconnect-green p-2 rounded-full">
+            <div className="bg-green-400 p-2 rounded-full shadow">
               <Stethoscope className="h-6 w-6 text-white" />
             </div>
-            <span className="text-2xl font-bold text-medconnect-green">MedConnect</span>
+            <span className="text-2xl font-bold text-green-600">MedConnect</span>
           </div>
           <div className="space-x-4">
-            <Button variant="ghost" className="text-medconnect-green hover:bg-medconnect-light-green">
-              Sign In
-            </Button>
+            <Link href='./loginPage'>
+              <Button variant="ghost" className="text-green-600 hover:bg-green-100">Sign In</Button>
+            </Link>
             <Link
-              href={'/register'}
-              className="bg-medconnect-green hover:bg-medconnect-green/90 text-white"
+              href="/register"
+              className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded shadow"
             >
               Get Started
             </Link>
@@ -62,26 +59,23 @@ const Index = () => {
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 text-center">
         <div className="max-w-4xl mx-auto animate-fade-in">
-          <h1 className="text-5xl md:text-6xl font-bold text-medconnect-green mb-6">
-            Your Health,{' '}
-            <span>
-              Connected
-            </span>
+          <h1 className="text-5xl md:text-6xl font-bold text-green-600 mb-6">
+            Your Health, <span>Connected</span>
           </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
             Bridge the gap between patients and healthcare providers with MedConnect.
             Experience seamless, secure, and personalized healthcare management.
           </p>
           <div className="space-x-4">
             <Link
-              href={'/register'}
-              className="bg-medconnect-green hover:bg-medconnect-green/90 text-white transform hover:scale-105 transition-all duration-200 shadow-lg"
+              href="/register"
+              className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded shadow transform hover:scale-105 transition"
             >
               Join as Patient
             </Link>
             <Link
-              href={'/register'}
-              className="border-medconnect-green text-medconnect-green hover:bg-medconnect-light-green transform hover:scale-105 transition-all duration-200"
+              href="/register"
+              className="border border-green-500 text-green-600 hover:bg-green-100 px-6 py-2 rounded transform hover:scale-105 transition"
             >
               Join as Doctor
             </Link>
@@ -89,32 +83,31 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Features */}
       <section className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-medconnect-green mb-4">
+          <h2 className="text-4xl font-bold text-green-600 mb-4">
             Why Choose MedConnect?
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             We're revolutionizing healthcare by making it more accessible, efficient, and patient-centered.
           </p>
         </div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="text-center border-0 shadow-lg bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-fade-in"
+              className="text-center border border-green-100 shadow-md bg-white hover:shadow-lg transition transform hover:-translate-y-2 animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardHeader>
-                <div className="bg-medconnect-light-green p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                  <feature.icon className="h-8 w-8 text-medconnect-green" />
+                <div className="bg-green-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <feature.icon className="h-8 w-8 text-green-500" />
                 </div>
-                <CardTitle className="text-medconnect-green">{feature.title}</CardTitle>
+                <CardTitle className="text-green-600">{feature.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-base">
+                <CardDescription className="text-gray-600 text-base">
                   {feature.description}
                 </CardDescription>
               </CardContent>
@@ -124,19 +117,19 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-medconnect-green/5 py-20">
+      <section className="bg-green-50 py-20">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-medconnect-green mb-6">
+            <h2 className="text-4xl font-bold text-green-600 mb-6">
               Ready to Transform Your Healthcare Experience?
             </h2>
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-lg text-gray-600 mb-8">
               Join thousands of patients and healthcare providers who trust MedConnect
               for their healthcare needs.
             </p>
             <Link
-              href={'/register'}
-              className="bg-medconnect-green hover:bg-medconnect-green/90 text-white transform hover:scale-105 transition-all duration-200 shadow-lg"
+              href="/register"
+              className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded shadow transform hover:scale-105 transition"
             >
               Start Your Journey Today
             </Link>
@@ -145,18 +138,18 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-medconnect-green text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-center space-x-2 mb-6">
+      <footer className="bg-green-600 text-white py-10">
+        <div className="container mx-auto px-4 text-center">
+          <div className="flex justify-center items-center space-x-2 mb-4">
             <div className="bg-white p-2 rounded-full">
-              <Stethoscope className="h-6 w-6 text-medconnect-green" />
+              <Stethoscope className="h-6 w-6 text-green-600" />
             </div>
-            <span className="text-2xl font-bold">MedConnect</span>
+            <span className="text-xl font-bold">MedConnect</span>
           </div>
-          <div className="text-center text-medconnect-light-green">
-            <p>&copy; 2024 MedConnect. All rights reserved.</p>
-            <p className="mt-2">Connecting healthcare, one patient at a time.</p>
-          </div>
+          <p className="text-green-100">
+            &copy; 2024 MedConnect. All rights reserved.
+          </p>
+          <p className="text-green-100 mt-1">Connecting healthcare, one patient at a time.</p>
         </div>
       </footer>
     </div>

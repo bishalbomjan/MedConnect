@@ -13,6 +13,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { addLoginDetails } from '@/redux/reducerSlices/userSlice.js';
+import apiClient from '../api-client';
 
 // Validation schema using Yup
 const signInSchema = Yup.object().shape({
@@ -35,7 +36,7 @@ const SignIn = () => {
     const dispatch = useDispatch();
     const router = useRouter()
     const handleSubmit = async (values: typeof initialValues, { setSubmitting }: any) => {
-        const { data } = await axios.post('http://localhost:8080/login', values)
+        const { data } = await apiClient.post('/login', values)
         toast(data?.message)
         if (data) {
             dispatch(addLoginDetails(data))

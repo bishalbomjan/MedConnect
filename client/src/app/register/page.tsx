@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { User, Mail, Phone, MapPin, Lock, Stethoscope } from 'lucide-react';
 import Link from 'next/link';
-import axios from 'axios';
+import apiClient from '../api-client.js'
 import { toast } from 'sonner';
 
 
@@ -53,7 +53,7 @@ const Register = () => {
 
 
     const handleSubmit = async (values: typeof initialValues, { setSubmitting }: any) => {
-        const { data } = await axios.post('http://localhost:8080/register', values)
+        const { data } = await apiClient.post('/register', values)
         toast(data)
     };
 
@@ -142,7 +142,7 @@ const Register = () => {
                                     <div className="space-y-2">
                                         <Label htmlFor="location" className="text-sm font-medium text-green-700">
                                             <MapPin className="inline h-4 w-4 mr-1" />
-                                            Location
+                                            Address
                                         </Label>
                                         <Field
                                             as={Input}

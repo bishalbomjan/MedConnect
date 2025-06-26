@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 112, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/bomja/Desktop/medical/MedConnect/client/src/app/api-client.js"],"sourcesContent":["import axios from \"axios\";\r\nconst apiClient = axios.create({\r\n  baseURL: \"http://localhost:8080\",\r\n});\r\nexport default apiClient;\r\n"],"names":[],"mappings":";;;AAAA;;AACA,MAAM,YAAY,qIAAA,CAAA,UAAK,CAAC,MAAM,CAAC;IAC7B,SAAS;AACX;uCACe","debugId":null}},
+    {"offset": {"line": 127, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/bomja/Desktop/medical/MedConnect/client/src/app/admin/page.tsx"],"sourcesContent":["import React from 'react'\r\nimport apiClient from '../api-client'\r\n\r\nconst Admin = async () => {\r\n    const { data } = await apiClient.get('/user?role=doctor');\r\n    return (\r\n        <div>{data.map(d => <><p>Email:{d.email}</p></>)}</div>\r\n    )\r\n}\r\n\r\nexport default Admin"],"names":[],"mappings":";;;;AACA;;;AAEA,MAAM,QAAQ;IACV,MAAM,EAAE,IAAI,EAAE,GAAG,MAAM,2HAAA,CAAA,UAAS,CAAC,GAAG,CAAC;IACrC,qBACI,8OAAC;kBAAK,KAAK,GAAG,CAAC,CAAA,kBAAK;0BAAE,cAAA,8OAAC;;wBAAE;wBAAO,EAAE,KAAK;;;;;;;;;;;;;AAE/C;uCAEe","debugId":null}}]
+}
