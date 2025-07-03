@@ -1,11 +1,11 @@
-// import { Router } from "express";
-// import Doctor from "../models/doctor.js";
+import { Router } from "express";
+import Doctor from "../models/doctorKyc.js";
 
-// const routerDoctor = Router();
+const routerDoctor = Router();
 
-// routerDoctor.post("/register", async (req, res) => {
-//   Doctor.create(req.body);
-//   res.send("Doctor Verified successfully")
-// }
+routerDoctor.post("/doctorkycs/:id", async (req, res) => {
+  Doctor.create({ doctor: req.params.id, isKycSubmitted: true, ...req.body });
+  return res.send({ message: "Doctor Kyc details submitted successfully" });
+});
 
-// export default routerDoctor;
+export default routerDoctor;

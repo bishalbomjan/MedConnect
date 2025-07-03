@@ -1,1 +1,12 @@
-{}
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/admin/doctor-approval/page": "app/admin/doctor-approval/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/patient-approval/page": "app/admin/patient-approval/page.js",
+  "/doctor/page": "app/doctor/page.js",
+  "/loginPage/page": "app/loginPage/page.js",
+  "/page": "app/page.js",
+  "/patient/page": "app/patient/page.js",
+  "/register/page": "app/register/page.js",
+  "/users/doctor/page": "app/users/doctor/page.js"
+}
