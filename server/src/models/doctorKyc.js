@@ -11,6 +11,7 @@ const doctorSchema = new Schema({
       date: Date,
     },
   ],
+  experienceYear: String,
   doctor: { type: Schema.Types.ObjectId, ref: "User", required: true },
   isKycSubmitted: { type: Boolean, default: false },
   isKycApproved: { type: Boolean, default: false },

@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Button } from '@/components/ui/button';
@@ -9,9 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Mail, Lock, Stethoscope } from 'lucide-react';
 import { toast } from 'sonner';
 import Link from 'next/link';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addLoginDetails } from '@/redux/reducerSlices/userSlice.js';
 import apiClient from '../api-client';
 
@@ -25,26 +24,40 @@ const signInSchema = Yup.object().shape({
         .required('Password is required'),
 });
 
-
-
 const SignIn = () => {
+    const router = useRouter();
+    const dispatch = useDispatch();
+    const { isLoggedIn, role } = useSelector((state: any) => state.user);
+
+    // Redirect when logged in
+    useEffect(() => {
+        if (isLoggedIn && role === 'patient') router.push('/users/patient');
+        if (isLoggedIn && role === 'doctor') router.push('/users/doctor');
+        if (isLoggedIn && role === 'admin') router.push('/admin');
+    }, [isLoggedIn, role, router]);
+
     // Initial form values
     const initialValues = {
         email: '',
         password: '',
     };
-    const dispatch = useDispatch();
-    const router = useRouter()
-    const handleSubmit = async (values: typeof initialValues, { setSubmitting }: any) => {
-        const { data } = await apiClient.post('/login', values)
-        toast(data?.message)
-        if (data) {
-            dispatch(addLoginDetails(data))
+
+    // Handle form submission
+    const handleSubmit = async (values: typeof initialValues) => {
+        try {
+            const { data } = await apiClient.post('/login', values);
+            toast(data?.message || 'Login successful');
+
+            if (data) {
+                dispatch(addLoginDetails(data));
+            }
+
+            if (data?.isLoggedIn && data?.role === 'patient') router.push('/users/patient');
+            if (data?.isLoggedIn && data?.role === 'doctor') router.push('/users/doctor');
+            if (data?.isLoggedIn && data?.role === 'admin') router.push('/admin');
+        } catch (error: any) {
+            toast.error(error?.response?.data?.message || 'An error occurred during sign in');
         }
-        if (data?.isLoggedIn) router.push('/')
-        setTimeout(() => {
-            setSubmitting(false);
-        }, 1000)
     };
 
     return (
@@ -65,7 +78,9 @@ const SignIn = () => {
                 <Card className="shadow-xl border-green-200 bg-white backdrop-blur-sm animate-fade-in">
                     <CardHeader className="text-center pb-2">
                         <CardTitle className="text-2xl text-green-600">Sign In</CardTitle>
-                        <CardDescription className="text-gray-600">Enter your credentials to continue</CardDescription>
+                        <CardDescription className="text-gray-600">
+                            Enter your credentials to continue
+                        </CardDescription>
                     </CardHeader>
 
                     <CardContent>

@@ -19,16 +19,17 @@ routerPatient.get("/patientKyc", async (req, res) => {
 });
 routerPatient.get("/patientKyc/:id", async (req, res) => {
   const kyc = await Patient.findOne({ patient: req.params.id });
-  if (!kyc)
+  if (!kyc || kyc.length === 0)
     return res.status(404).send({
       isKycApproved: false,
       isKycSubmitted: false,
-      message: "Patient Kyc details not found",
+      message: "Patient Kyc details not found, Please fill Kyc detail",
     });
   return res.send({
-    isKycApproved: kyc.isKycApproved,
-    isKycSubmitted: kyc.isKycSubmitted,
-    message: "KYC details found successfully",
+    isKycApproved: kyc[0].isKycApproved || false,
+    isKycSubmitted: ture,
+    message: "Kyc Detail fetched successfully",
+    kyc: kyc[0],
   });
 });
 

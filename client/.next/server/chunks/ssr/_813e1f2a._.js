@@ -12,6 +12,28 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-rsc] (ecmascript)");
 ;
 ;
+const navItems = [
+    {
+        label: "Doctor",
+        path: "/seller/dashboard",
+        icon: BarChart3
+    },
+    {
+        label: "Patient",
+        path: "/seller/products",
+        icon: Package
+    },
+    {
+        label: "Appoinment",
+        path: "/seller/orders",
+        icon: ShoppingCart
+    },
+    {
+        label: "Revenue",
+        path: "/seller/revenue",
+        icon: DollarSign
+    }
+];
 const sideBar = ()=>{
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Fragment"], {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -22,7 +44,7 @@ const sideBar = ()=>{
                     children: "Dcotor page"
                 }, void 0, false, {
                     fileName: "[project]/src/components/SideBar.tsx",
-                    lineNumber: 8,
+                    lineNumber: 16,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -30,13 +52,13 @@ const sideBar = ()=>{
                     children: "Patient page"
                 }, void 0, false, {
                     fileName: "[project]/src/components/SideBar.tsx",
-                    lineNumber: 9,
+                    lineNumber: 17,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/SideBar.tsx",
-            lineNumber: 7,
+            lineNumber: 15,
             columnNumber: 13
         }, this)
     }, void 0, false);

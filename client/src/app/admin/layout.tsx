@@ -3,10 +3,13 @@ import React from 'react'
 
 const layout = ({ children }) => {
     return (
-        <div className='flex'>
-            <SideBar />
-            {children}
-        </div>
+        <>
+
+            <div className='flex'>
+                <SideBar />
+                {children}
+            </div>
+        </>
     )
 }
 

@@ -1,6 +1,7 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 
-const prescriptionSchema = new mongoose.Schema(
+const prescriptionSchema = new Schema(
   {
     appointmentId: {
       type: Schema.Types.ObjectId,
