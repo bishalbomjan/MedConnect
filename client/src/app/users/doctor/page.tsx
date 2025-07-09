@@ -15,7 +15,6 @@ const DoctorHome = () => {
     const fetchDoctor = async () => {
         try {
             const response = await apiClient.get(`/doctorkycs/${_id}`);
-            console.log("Fetched doctor data:", response.data);
             setDoctor(response.data);
         } catch (err) {
             console.error("Failed to fetch doctor:", err);
@@ -24,15 +23,13 @@ const DoctorHome = () => {
 
     return (
         <>
-            {!doctor.isKycSubmitted && (
+            {doctor.length === 0 && (
                 <Button asChild>
                     <Link href="/doctorKYC">Enter your KYC Details</Link>
                 </Button>
             )}
-            {_id}
-            <div>Email: {doctor.fullname}</div>
-            <pre>{JSON.stringify(doctor, null, 2)}</pre>
-            <div>DoctorHome</div>
+
+
         </>
 
     );

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const page = () => {
+const Appoinment = () => {
     return (
         <div>this is appoinment page</div>
     )
 }
 
-export default page
+export default Appoinment

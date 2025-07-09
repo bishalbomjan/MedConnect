@@ -1,18 +1,21 @@
-'use client'
-import Link from 'next/link'
-import Image from 'next/image'
-import React from 'react'
-import { Stethoscope, Users, DollarSign, Heart } from 'lucide-react'
-import { Button } from './ui/button'
+'use client';
+import Link from 'next/link';
+import Image from 'next/image';
+import React from 'react';
+import { Button } from './ui/button';
+import { useDispatch, useSelector } from 'react-redux';
+import { sidebarMenu } from '@/config/navItems';
+import { useRouter } from 'next/navigation';
+import { logoutUser } from '@/redux/reducerSlices/userSlice';
 
-const navItems = [
-    { label: "Doctor", path: "/admin/doctor-approval", icon: Stethoscope },
-    { label: "Patient", path: "/admin/patient-approval", icon: Users },
-    { label: "Appoinment", path: "/admin/appoinment", icon: Heart },
-    // { label: "Revenue", path: "/admin/revenue", icon: DollarSign },
-]
 
 const SideBar = () => {
+    const { role } = useSelector((state: any) => state.user);
+    const dispatch = useDispatch()
+    const route = useRouter()
+    // Fallback in case role is undefined or invalid
+    const navItems = sidebarMenu[role] || [];
+
     return (
         <div className="flex flex-col h-screen w-64 bg-white shadow-xl border-r border-green-100">
             <div className="flex items-center justify-center p-6 bg-gradient-to-r from-green-500 to-green-600">
@@ -30,7 +33,7 @@ const SideBar = () => {
                         }}
                     >
                         <Image
-                            src='/admin.jpg'
+                            src="/admin.jpg"
                             alt="App Logo"
                             width={60}
                             height={60}
@@ -59,12 +62,12 @@ const SideBar = () => {
             </nav>
 
             <div className="p-4 border-t border-green-100">
-                <Button className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg active:scale-95">
+                <Button onClick={() => { dispatch(logoutUser()), route.push('/') }} className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg active:scale-95">
                     Logout
                 </Button>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default SideBar
+export default SideBar;

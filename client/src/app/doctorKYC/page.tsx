@@ -70,10 +70,8 @@ const DoctorKyc = () => {
     const { _id } = useSelector(state => state.user)
     const handleSubmit = async (values: any) => {
         const response = await apiClient.post(`/doctorkycs/${_id}`, values)
-
-        if (response.data) {
-            toast(response.data.message)
-        }
+        console.log(response.data.message)
+        toast(response.data.message)
     };
 
     return (

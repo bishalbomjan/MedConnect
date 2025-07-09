@@ -31,11 +31,8 @@ const PatientKyc = () => {
     };
 
     const handleSubmit = async (values: typeof initialValues) => {
-        const response = await apiClient.post(`/patientKyc/${_id}`, values)
-        if (response.data) {
-            toast(response.data.message)
-        }
-    };
+        await apiClient.post(`/patientKyc/${_id}`, values).then(res => toast(res.data.message)).catch(err => toast(err.response.data.message))
+    }
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-50 py-8 px-4 flex items-center justify-center">

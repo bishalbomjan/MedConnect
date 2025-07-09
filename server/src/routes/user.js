@@ -52,6 +52,11 @@ userRoute.get("/user", async (req, res) => {
   }
   res.send(data);
 });
+userRoute.get("/user/:id", async (req, res) => {
+  const data = await User.findById(req.params.id);
+  if (!data) return res.send({ message: "Patient detail not found" });
+  return res.send(data);
+});
 userRoute.patch("/user/:id", async (req, res) => {
   let user;
   user = await User.findById(req.params.id);

@@ -33,7 +33,7 @@ const SignIn = () => {
     useEffect(() => {
         if (isLoggedIn && role === 'patient') router.push('/users/patient');
         if (isLoggedIn && role === 'doctor') router.push('/users/doctor');
-        if (isLoggedIn && role === 'admin') router.push('/admin');
+        if (isLoggedIn && role === 'admin') router.push('/admin/patient-approval');
     }, [isLoggedIn, role, router]);
 
     // Initial form values
@@ -53,8 +53,8 @@ const SignIn = () => {
             }
 
             if (data?.isLoggedIn && data?.role === 'patient') router.push('/users/patient');
-            if (data?.isLoggedIn && data?.role === 'doctor') router.push('/users/doctor');
-            if (data?.isLoggedIn && data?.role === 'admin') router.push('/admin');
+            if (data?.isLoggedIn && data?.role === 'doctor') router.push('/users/doctor/profile');
+            if (data?.isLoggedIn && data?.role === 'admin') router.push('/admin/patient-approval');
         } catch (error: any) {
             toast.error(error?.response?.data?.message || 'An error occurred during sign in');
         }

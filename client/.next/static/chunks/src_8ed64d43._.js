@@ -258,7 +258,7 @@ const SignIn = ()=>{
         "SignIn.useEffect": ()=>{
             if (isLoggedIn && role === 'patient') router.push('/users/patient');
             if (isLoggedIn && role === 'doctor') router.push('/users/doctor');
-            if (isLoggedIn && role === 'admin') router.push('/admin');
+            if (isLoggedIn && role === 'admin') router.push('/admin/patient-approval');
         }
     }["SignIn.useEffect"], [
         isLoggedIn,
@@ -280,7 +280,7 @@ const SignIn = ()=>{
             }
             if (data?.isLoggedIn && data?.role === 'patient') router.push('/users/patient');
             if (data?.isLoggedIn && data?.role === 'doctor') router.push('/users/doctor');
-            if (data?.isLoggedIn && data?.role === 'admin') router.push('/admin');
+            if (data?.isLoggedIn && data?.role === 'admin') router.push('/admin/patient-approval');
         } catch (error) {
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(error?.response?.data?.message || 'An error occurred during sign in');
         }
