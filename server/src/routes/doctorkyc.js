@@ -35,8 +35,12 @@ routerDoctor.get("/doctorkycs", async (req, res) => {
       // Use $in to match any specialization
       query.specializations = { $in: specializationsArray };
     }
-
-    const kyc = await Doctor.find(query).populate("doctor");
+    let kyc;
+    if (query) {
+      kyc = await Doctor.find(query).populate("doctor");
+    } else {
+      kyc = await Doctor.find().populate("doctor");
+    }
 
     return res.json(kyc);
   } catch (error) {
@@ -51,6 +55,7 @@ routerDoctor.get("/doctorkycs/:id", async (req, res) => {
     return res.status(404).send({
       message: "Doctor details not found, Please fill Kyc detail",
     });
+
   return res.send({
     message: "Doctor detail fetched successfully",
     kyc,
@@ -58,9 +63,7 @@ routerDoctor.get("/doctorkycs/:id", async (req, res) => {
 });
 
 routerDoctor.patch("/doctorkycs/:id", async (req, res) => {
-  const kyc = await Doctor.findOne({ doctor: req.params.id }).populate(
-    "doctor"
-  );
+  const kyc = await Doctor.findById(req.params.id).populate("doctor");
   if (!kyc) {
     return res.status(404).send({ message: "KYC record not found" });
   }

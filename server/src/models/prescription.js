@@ -27,7 +27,18 @@ const prescriptionSchema = new Schema(
         instructions: String,
       },
     ],
-    notes: String,
+    test: [
+      {
+        name: { type: String, required: true },
+        urgency: String,
+        Reason: String,
+      },
+    ],
+    examinationNote: {
+      notes: String,
+      diagnosis: String,
+    },
+    note: String,
   },
   {
     timestamps: true,

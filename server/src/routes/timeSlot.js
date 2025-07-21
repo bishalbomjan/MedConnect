@@ -1,6 +1,7 @@
 // routes/timeSlotRoute.js
 import { Router } from "express";
 import TimeSlot from "../models/timeSlot.js";
+import mongoose from "mongoose";
 
 const timeSlotRoute = Router();
 
@@ -40,18 +41,24 @@ timeSlotRoute.get("/timeslot", async (req, res) => {
     }
 
     if (req.query.date) {
-      // Match date ignoring time portion
       const targetDate = new Date(req.query.date);
-      const nextDate = new Date(targetDate);
-      nextDate.setDate(nextDate.getDate() + 1);
+      // if (isNaN(targetDate.getTime())) {
+      //   return res.status(400).send({ error: "Invalid date format." });
+      // }
+      // const nextDate = new Date(targetDate);
+      // nextDate.setDate(nextDate.getDate() + 1);
 
-      filter.date = { $gte: targetDate, $lt: nextDate };
+      filter.date = targetDate;
     }
 
-    const slots = await TimeSlot.find(filter).sort({ date: 1, startTime: 1 });
-    res.send(slots);
+    const slots = await TimeSlot.find(filter)
+      .sort({ date: 1, startTime: 1 })
+      .populate("doctorId bookedById");
+
+    return res.send(slots);
   } catch (err) {
-    res.status(500).send({ error: "Failed to fetch time slots." });
+    console.error("Fetch time slots error:", err);
+    return res.status(500).send({ error: "Failed to fetch time slots." });
   }
 });
 

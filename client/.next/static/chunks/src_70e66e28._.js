@@ -306,6 +306,8 @@ const PatientProfile = ()=>{
             fetchProfilePatient();
         }
     }["PatientProfile.useEffect"], []);
+    console.log("Patient Profile Data:", formData);
+    console.log("User ID:", _id);
     const fetchProfilePatient = async ()=>{
         try {
             const res = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$api$2d$client$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`/patientKyc/${_id}`);
@@ -343,14 +345,14 @@ const PatientProfile = ()=>{
                         className: "h-3 w-3 mr-1"
                     }, void 0, false, {
                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                        lineNumber: 70,
+                        lineNumber: 71,
                         columnNumber: 21
                     }, this),
                     " Not Submitted"
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                lineNumber: 69,
+                lineNumber: 70,
                 columnNumber: 17
             }, this);
         }
@@ -363,14 +365,14 @@ const PatientProfile = ()=>{
                         className: "h-3 w-3 mr-1"
                     }, void 0, false, {
                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                        lineNumber: 77,
+                        lineNumber: 78,
                         columnNumber: 21
                     }, this),
                     " Pending Approval"
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                lineNumber: 76,
+                lineNumber: 77,
                 columnNumber: 17
             }, this);
         }
@@ -381,14 +383,14 @@ const PatientProfile = ()=>{
                     className: "h-3 w-3 mr-1"
                 }, void 0, false, {
                     fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                    lineNumber: 83,
+                    lineNumber: 84,
                     columnNumber: 17
                 }, this),
                 " Approved"
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/users/patient/profile/page.tsx",
-            lineNumber: 82,
+            lineNumber: 83,
             columnNumber: 13
         }, this);
     };
@@ -410,7 +412,7 @@ const PatientProfile = ()=>{
                                         className: "h-8 w-8 text-green-600"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                        lineNumber: 95,
+                                        lineNumber: 96,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -418,13 +420,13 @@ const PatientProfile = ()=>{
                                         children: "MedConnect"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                        lineNumber: 96,
+                                        lineNumber: 97,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                lineNumber: 94,
+                                lineNumber: 95,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -437,33 +439,33 @@ const PatientProfile = ()=>{
                                         children: "Back to Portal"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                        lineNumber: 100,
+                                        lineNumber: 101,
                                         columnNumber: 33
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                    lineNumber: 99,
+                                    lineNumber: 100,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                lineNumber: 98,
+                                lineNumber: 99,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                        lineNumber: 93,
+                        lineNumber: 94,
                         columnNumber: 21
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                    lineNumber: 92,
+                    lineNumber: 93,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                lineNumber: 91,
+                lineNumber: 92,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -477,7 +479,7 @@ const PatientProfile = ()=>{
                                 children: "Patient Profile"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                lineNumber: 115,
+                                lineNumber: 116,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -485,13 +487,13 @@ const PatientProfile = ()=>{
                                 children: "Manage your personal and medical information"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                lineNumber: 116,
+                                lineNumber: 117,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                        lineNumber: 114,
+                        lineNumber: 115,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -513,12 +515,12 @@ const PatientProfile = ()=>{
                                                             className: "h-8 w-8 text-green-600"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                            lineNumber: 126,
+                                                            lineNumber: 127,
                                                             columnNumber: 41
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                        lineNumber: 125,
+                                                        lineNumber: 126,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -528,7 +530,7 @@ const PatientProfile = ()=>{
                                                                 children: formData.fullname || "Patient"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                lineNumber: 129,
+                                                                lineNumber: 130,
                                                                 columnNumber: 41
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
@@ -536,19 +538,19 @@ const PatientProfile = ()=>{
                                                                 children: "Patient ID: #P001"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                lineNumber: 130,
+                                                                lineNumber: 131,
                                                                 columnNumber: 41
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                        lineNumber: 128,
+                                                        lineNumber: 129,
                                                         columnNumber: 37
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                lineNumber: 124,
+                                                lineNumber: 125,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -559,29 +561,29 @@ const PatientProfile = ()=>{
                                                         className: "h-5 w-5 text-green-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                        lineNumber: 135,
+                                                        lineNumber: 136,
                                                         columnNumber: 37
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                lineNumber: 133,
+                                                lineNumber: 134,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                        lineNumber: 123,
+                                        lineNumber: 124,
                                         columnNumber: 29
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                    lineNumber: 122,
+                                    lineNumber: 123,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                lineNumber: 121,
+                                lineNumber: 122,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -597,20 +599,20 @@ const PatientProfile = ()=>{
                                                         children: "Personal Information"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                        lineNumber: 145,
+                                                        lineNumber: 146,
                                                         columnNumber: 33
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
                                                         children: "Your basic personal details"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                        lineNumber: 146,
+                                                        lineNumber: 147,
                                                         columnNumber: 33
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                lineNumber: 144,
+                                                lineNumber: 145,
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -620,13 +622,13 @@ const PatientProfile = ()=>{
                                                 children: isEditing ? "Cancel" : "Edit Profile"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                lineNumber: 148,
+                                                lineNumber: 149,
                                                 columnNumber: 29
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                        lineNumber: 143,
+                                        lineNumber: 144,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -674,7 +676,7 @@ const PatientProfile = ()=>{
                                                                     children: label
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                    lineNumber: 166,
+                                                                    lineNumber: 167,
                                                                     columnNumber: 41
                                                                 }, this),
                                                                 isEditing ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -685,7 +687,7 @@ const PatientProfile = ()=>{
                                                                     className: "mt-1 border-green-200 focus:ring-green-500 focus:border-green-500"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                    lineNumber: 168,
+                                                                    lineNumber: 169,
                                                                     columnNumber: 45
                                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                     className: "mt-1 p-3 bg-gray-50 rounded-md border",
@@ -696,25 +698,25 @@ const PatientProfile = ()=>{
                                                                                 className: "h-4 w-4 text-gray-400 mr-2"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                                lineNumber: 178,
+                                                                                lineNumber: 179,
                                                                                 columnNumber: 53
                                                                             }, this),
                                                                             field === "dateOfBirth" && formData.dateOfBirth ? new Date(formData.dateOfBirth).toLocaleDateString() : formData[field] || "N/A"
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                        lineNumber: 177,
+                                                                        lineNumber: 178,
                                                                         columnNumber: 49
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                    lineNumber: 176,
+                                                                    lineNumber: 177,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             ]
                                                         }, field, true, {
                                                             fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                            lineNumber: 165,
+                                                            lineNumber: 166,
                                                             columnNumber: 37
                                                         }, this)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -725,7 +727,7 @@ const PatientProfile = ()=>{
                                                                 children: "Role"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                lineNumber: 189,
+                                                                lineNumber: 190,
                                                                 columnNumber: 37
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -737,7 +739,7 @@ const PatientProfile = ()=>{
                                                                             className: "h-4 w-4 text-gray-400 mr-2"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                            lineNumber: 192,
+                                                                            lineNumber: 193,
                                                                             columnNumber: 45
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
@@ -745,30 +747,30 @@ const PatientProfile = ()=>{
                                                                             children: formData.role || "patient"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                            lineNumber: 193,
+                                                                            lineNumber: 194,
                                                                             columnNumber: 45
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                    lineNumber: 191,
+                                                                    lineNumber: 192,
                                                                     columnNumber: 41
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                lineNumber: 190,
+                                                                lineNumber: 191,
                                                                 columnNumber: 37
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                        lineNumber: 188,
+                                                        lineNumber: 189,
                                                         columnNumber: 33
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                lineNumber: 157,
+                                                lineNumber: 158,
                                                 columnNumber: 29
                                             }, this),
                                             isEditing && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -780,7 +782,7 @@ const PatientProfile = ()=>{
                                                         children: "Save Changes"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                        lineNumber: 203,
+                                                        lineNumber: 204,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -790,25 +792,25 @@ const PatientProfile = ()=>{
                                                         children: "Cancel"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                        lineNumber: 209,
+                                                        lineNumber: 210,
                                                         columnNumber: 37
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                lineNumber: 202,
+                                                lineNumber: 203,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                        lineNumber: 156,
+                                        lineNumber: 157,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                lineNumber: 142,
+                                lineNumber: 143,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -823,27 +825,27 @@ const PatientProfile = ()=>{
                                                         className: "h-5 w-5 mr-2"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                        lineNumber: 225,
+                                                        lineNumber: 226,
                                                         columnNumber: 33
                                                     }, this),
                                                     "KYC Verification Status"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                lineNumber: 224,
+                                                lineNumber: 225,
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
                                                 children: "Know Your Customer verification details"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                lineNumber: 228,
+                                                lineNumber: 229,
                                                 columnNumber: 29
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                        lineNumber: 223,
+                                        lineNumber: 224,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -862,18 +864,18 @@ const PatientProfile = ()=>{
                                                                         className: "h-5 w-5 text-green-600"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                        lineNumber: 237,
+                                                                        lineNumber: 238,
                                                                         columnNumber: 49
                                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__["Clock"], {
                                                                         className: "h-5 w-5 text-gray-400"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                        lineNumber: 239,
+                                                                        lineNumber: 240,
                                                                         columnNumber: 49
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                    lineNumber: 235,
+                                                                    lineNumber: 236,
                                                                     columnNumber: 41
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -883,7 +885,7 @@ const PatientProfile = ()=>{
                                                                             children: "KYC Submission"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                            lineNumber: 243,
+                                                                            lineNumber: 244,
                                                                             columnNumber: 45
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -891,26 +893,26 @@ const PatientProfile = ()=>{
                                                                             children: formData.isKycSubmitted ? "Documents submitted" : "Pending submission"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                            lineNumber: 244,
+                                                                            lineNumber: 245,
                                                                             columnNumber: 45
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                    lineNumber: 242,
+                                                                    lineNumber: 243,
                                                                     columnNumber: 41
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                            lineNumber: 234,
+                                                            lineNumber: 235,
                                                             columnNumber: 37
                                                         }, this),
                                                         getKycStatusBadge()
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                    lineNumber: 233,
+                                                    lineNumber: 234,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -925,18 +927,18 @@ const PatientProfile = ()=>{
                                                                         className: "h-5 w-5 text-green-600"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                        lineNumber: 257,
+                                                                        lineNumber: 258,
                                                                         columnNumber: 49
                                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__XCircle$3e$__["XCircle"], {
                                                                         className: "h-5 w-5 text-red-500"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                        lineNumber: 259,
+                                                                        lineNumber: 260,
                                                                         columnNumber: 49
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                    lineNumber: 255,
+                                                                    lineNumber: 256,
                                                                     columnNumber: 41
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -946,7 +948,7 @@ const PatientProfile = ()=>{
                                                                             children: "KYC Approval"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                            lineNumber: 263,
+                                                                            lineNumber: 264,
                                                                             columnNumber: 45
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -954,19 +956,19 @@ const PatientProfile = ()=>{
                                                                             children: formData.isKycApproved ? "Verification approved" : "Awaiting approval"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                            lineNumber: 264,
+                                                                            lineNumber: 265,
                                                                             columnNumber: 45
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                                    lineNumber: 262,
+                                                                    lineNumber: 263,
                                                                     columnNumber: 41
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                            lineNumber: 254,
+                                                            lineNumber: 255,
                                                             columnNumber: 37
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
@@ -975,13 +977,13 @@ const PatientProfile = ()=>{
                                                             children: formData.isKycApproved ? "Approved" : "Pending"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                            lineNumber: 269,
+                                                            lineNumber: 270,
                                                             columnNumber: 37
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                    lineNumber: 253,
+                                                    lineNumber: 254,
                                                     columnNumber: 33
                                                 }, this),
                                                 !formData.isKycSubmitted && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -989,42 +991,42 @@ const PatientProfile = ()=>{
                                                     children: "Submit KYC Documents"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                                    lineNumber: 282,
+                                                    lineNumber: 283,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                            lineNumber: 231,
+                                            lineNumber: 232,
                                             columnNumber: 29
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                        lineNumber: 230,
+                                        lineNumber: 231,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                                lineNumber: 222,
+                                lineNumber: 223,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                        lineNumber: 119,
+                        lineNumber: 120,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/users/patient/profile/page.tsx",
-                lineNumber: 113,
+                lineNumber: 114,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/users/patient/profile/page.tsx",
-        lineNumber: 89,
+        lineNumber: 90,
         columnNumber: 9
     }, this);
 };

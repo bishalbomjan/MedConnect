@@ -5,18 +5,18 @@ const appointmentSchema = new Schema(
   {
     bookedById: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Doctor",
       required: true,
     },
     doctorId: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Patient",
       required: true,
     },
     status: {
       type: String,
-      enum: ["Pending", "In Progress", "Completed", "Cancelled", "Booked"],
-      default: "Pending",
+      enum: [, "In Progress", "Completed", "Cancelled", "Schedual", "No Show"],
+      default: "Schedual",
     },
   },
   {

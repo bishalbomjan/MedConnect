@@ -34,7 +34,8 @@ const PatientProfile = () => {
     useEffect(() => {
         fetchProfilePatient();
     }, []);
-
+    console.log("Patient Profile Data:", formData);
+    console.log("User ID:", _id);
     const fetchProfilePatient = async () => {
         try {
             const res = await apiClient.get(`/patientKyc/${_id}`);

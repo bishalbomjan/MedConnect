@@ -31,8 +31,8 @@ const SignIn = () => {
 
     // Redirect when logged in
     useEffect(() => {
-        if (isLoggedIn && role === 'patient') router.push('/users/patient');
-        if (isLoggedIn && role === 'doctor') router.push('/users/doctor');
+        if (isLoggedIn && role === 'patient') router.push('/users/patient/profile');
+        if (isLoggedIn && role === 'doctor') router.push('/users/doctor/profile');
         if (isLoggedIn && role === 'admin') router.push('/admin/patient-approval');
     }, [isLoggedIn, role, router]);
 
@@ -52,7 +52,7 @@ const SignIn = () => {
                 dispatch(addLoginDetails(data));
             }
 
-            if (data?.isLoggedIn && data?.role === 'patient') router.push('/users/patient');
+            if (data?.isLoggedIn && data?.role === 'patient') router.push('/users/patient/profile');
             if (data?.isLoggedIn && data?.role === 'doctor') router.push('/users/doctor/profile');
             if (data?.isLoggedIn && data?.role === 'admin') router.push('/admin/patient-approval');
         } catch (error: any) {

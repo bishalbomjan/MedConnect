@@ -11,6 +11,7 @@ const DoctorApproval = () => {
         try {
             const response = await apiClient.get("/doctorkycs?status=pending");
             setPending(response.data);
+            debugger
         } catch (error) {
             toast.error("Failed to fetch pending doctors.");
             console.error(error);
@@ -18,6 +19,7 @@ const DoctorApproval = () => {
     };
 
     useEffect(() => {
+        debugger
         fetchPendingDoctor();
     }, []);
 
@@ -31,7 +33,7 @@ const DoctorApproval = () => {
             console.error(error);
         }
     };
-
+    console.log(pending)
     return (
         <>
             {pending.length === 0 ? (

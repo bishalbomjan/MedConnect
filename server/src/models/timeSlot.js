@@ -7,7 +7,7 @@ const timeSlotSchema = new Schema(
   {
     doctorId: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "DoctorKyc",
       required: true,
     },
     date: {
@@ -38,8 +38,13 @@ const timeSlotSchema = new Schema(
     },
     bookedById: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "PatientKyc",
       default: null,
+    },
+    status: {
+      type: String,
+      enum: [, "In Progress", "Completed", "Cancelled", "Schedual", "No Show"],
+      default: "Schedual",
     },
   },
   { timestamps: true }

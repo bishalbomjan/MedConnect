@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Stethoscope, Users, Shield, Heart } from 'lucide-react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
+import Image from 'next/image';
 
 const Index = () => {
   const { email } = useSelector(state => state.user);
@@ -82,7 +83,14 @@ const Index = () => {
           </div>
         </div>
       </section>
-
+      {/* <div className="relative w-full mr-10 ml-10 h-64 my-10">
+        <Image
+          src="/hospital.jpg"
+          alt="Hospital building image"
+          fill
+          className="object-cover  rounded-lg"
+        />
+      </div> */}
       {/* Features */}
       <section className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
@@ -93,6 +101,8 @@ const Index = () => {
             We're revolutionizing healthcare by making it more accessible, efficient, and patient-centered.
           </p>
         </div>
+
+
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <Card

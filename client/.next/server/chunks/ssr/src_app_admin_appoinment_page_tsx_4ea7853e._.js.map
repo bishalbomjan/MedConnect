@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/bomja/Desktop/medical/MedConnect/client/src/app/admin/appoinment/page.tsx"],"sourcesContent":["'use client'\r\nimport React, { useEffect } from 'react'\r\n\r\nconst Appoinment = () => {\r\n    const fetchAppoinment = async () => {\r\n        try {\r\n            const response = await apiClient.get('/timeslot');\r\n            console.log(response.data);\r\n        } catch (error) {\r\n            console.error('Error fetching appointments:', error);\r\n        }\r\n    }\r\n    useEffect(() => {\r\n        fetchAppoinment();\r\n    }, []);\r\n    return (\r\n        <div>this is appoinment page</div>\r\n    )\r\n}\r\n\r\nexport default Appoinment"],"names":[],"mappings":";;;;AACA;AADA;;;AAGA,MAAM,aAAa;IACf,MAAM,kBAAkB;QACpB,IAAI;YACA,MAAM,WAAW,MAAM,UAAU,GAAG,CAAC;YACrC,QAAQ,GAAG,CAAC,SAAS,IAAI;QAC7B,EAAE,OAAO,OAAO;YACZ,QAAQ,KAAK,CAAC,gCAAgC;QAClD;IACJ;IACA,CAAA,GAAA,qMAAA,CAAA,YAAS,AAAD,EAAE;QACN;IACJ,GAAG,EAAE;IACL,qBACI,8OAAC;kBAAI;;;;;;AAEb;uCAEe","debugId":null}}]
+}

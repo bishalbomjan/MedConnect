@@ -18,7 +18,7 @@ routerPatient.get("/patientKyc", async (req, res) => {
   if (req.query.status === "pending") {
     kyc = await Patient.find({ isKycApproved: false }).populate("patient");
   } else {
-    kyc = await Patient.find().populate("PatientKyc");
+    kyc = await Patient.find().populate("patient");
   }
   return res.json(kyc);
 });
