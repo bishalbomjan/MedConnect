@@ -24,10 +24,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { useSearchParams } from "next/navigation";
+import { useParams } from "next/navigation";
+import apiClient from "@/app/api-client";
+import { toast } from "sonner";
 
+// Yup Schemas
 const medicationSchema = Yup.object().shape({
-    name: Yup.string().required("Medication name is required"),
+    name: Yup.string(),
     dosage: Yup.string(),
     frequency: Yup.string(),
     duration: Yup.string(),
@@ -35,50 +38,49 @@ const medicationSchema = Yup.object().shape({
 });
 
 const testSchema = Yup.object().shape({
-    testName: Yup.string().required("Test name is required"),
+    name: Yup.string().required("Test name is required"),
     reason: Yup.string(),
     urgency: Yup.string(),
 });
 
 const prescriptionSchema = Yup.object().shape({
-    examinationNotes: Yup.string().required("Examination notes are required"),
-    diagnosis: Yup.string().required("Diagnosis is required"),
+    examinationNote: Yup.object().shape({
+        notes: Yup.string().required("Examination notes are required"),
+        diagnosis: Yup.string().required("Diagnosis is required"),
+    }),
     medications: Yup.array()
         .of(medicationSchema)
         .min(1, "At least one medication is required"),
-    suggestedTests: Yup.array().of(testSchema),
-    notes: Yup.string(),
+    test: Yup.array().of(testSchema),
+    note: Yup.string(),
 });
 
 const Prescription = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const searchParams = useSearchParams();
-    const appointmentId = searchParams.get("appointmentId") || "";
+    const { id } = useParams();
 
     const initialValues = {
-        examinationNotes: "",
-        diagnosis: "",
+        examinationNote: {
+            notes: "",
+            diagnosis: "",
+        },
         medications: [
             { name: "", dosage: "", frequency: "", duration: "", instructions: "" },
         ],
-        suggestedTests: [],
-        notes: "",
+        test: [
+            { name: "", urgency: "", reason: "" },
+        ],
+        note: "",
     };
 
-    const handleSubmit = async (values: typeof initialValues, { resetForm }: any) => {
+    const handleSubmit = async (values, { resetForm }) => {
         setIsSubmitting(true);
         try {
-            // Simulate API call
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-
-            console.log("Prescription Data:", { appointmentId, ...values });
-
-            // You can use your own toast here
-            alert("Prescription created successfully!");
-
+            const response = await apiClient.post(`/prescription/${id}`, values);
+            toast(response.data.message);
             resetForm();
         } catch (error) {
-            alert("Failed to create prescription. Please try again.");
+            toast("Failed to create prescription. Please try again.");
         } finally {
             setIsSubmitting(false);
         }
@@ -106,7 +108,8 @@ const Prescription = () => {
                 >
                     {({ values, errors }) => (
                         <Form className="max-w-4xl mx-auto space-y-6">
-                            {/* Examination Notes */}
+
+                            {/* Examination Section */}
                             <Card className="border-green-100">
                                 <CardHeader className="bg-green-50">
                                     <CardTitle className="flex items-center gap-2 text-green-600">
@@ -119,35 +122,29 @@ const Prescription = () => {
                                 </CardHeader>
                                 <CardContent className="space-y-4">
                                     <div>
-                                        <Label htmlFor="examinationNotes" className="text-green-700 font-medium">
-                                            Examination Findings *
-                                        </Label>
+                                        <Label className="text-green-700 font-medium">Examination Findings *</Label>
                                         <Field
                                             as={Textarea}
-                                            id="examinationNotes"
-                                            name="examinationNotes"
+                                            name="examinationNote.notes"
                                             placeholder="Enter examination findings..."
                                             className="min-h-[120px] resize-none mt-1 placeholder:text-gray-400"
                                         />
                                         <ErrorMessage
-                                            name="examinationNotes"
+                                            name="examinationNote.notes"
                                             component="p"
                                             className="text-red-500 text-sm mt-1"
                                         />
                                     </div>
                                     <div>
-                                        <Label htmlFor="diagnosis" className="text-green-700 font-medium">
-                                            Diagnosis *
-                                        </Label>
+                                        <Label className="text-green-700 font-medium">Diagnosis *</Label>
                                         <Field
                                             as={Textarea}
-                                            id="diagnosis"
-                                            name="diagnosis"
+                                            name="examinationNote.diagnosis"
                                             placeholder="Enter diagnosis..."
                                             className="min-h-[80px] resize-none mt-1 placeholder:text-gray-400"
                                         />
                                         <ErrorMessage
-                                            name="diagnosis"
+                                            name="examinationNote.diagnosis"
                                             component="p"
                                             className="text-red-500 text-sm mt-1"
                                         />
@@ -170,11 +167,8 @@ const Prescription = () => {
                                     <FieldArray name="medications">
                                         {({ push, remove }) => (
                                             <div className="space-y-6">
-                                                {values.medications.map((med, index) => (
-                                                    <div
-                                                        key={index}
-                                                        className="p-4 border border-green-100 rounded-lg bg-white"
-                                                    >
+                                                {values.medications.map((_, index) => (
+                                                    <div key={index} className="p-4 border border-green-100 rounded-lg bg-white">
                                                         <div className="flex justify-between items-center mb-4">
                                                             <Badge variant="outline" className="text-green-600 border-green-600">
                                                                 Medication {index + 1}
@@ -199,11 +193,6 @@ const Prescription = () => {
                                                                     name={`medications.${index}.name`}
                                                                     placeholder="Medication name"
                                                                     className="mt-1 placeholder:text-gray-400"
-                                                                />
-                                                                <ErrorMessage
-                                                                    name={`medications.${index}.name`}
-                                                                    component="p"
-                                                                    className="text-red-500 text-sm mt-1"
                                                                 />
                                                             </div>
                                                             <div>
@@ -262,16 +251,13 @@ const Prescription = () => {
                                                     <Plus className="h-4 w-4 mr-2" />
                                                     Add Another Medication
                                                 </Button>
-                                                {errors.medications && typeof errors.medications === "string" && (
-                                                    <p className="text-red-500 text-sm">{errors.medications}</p>
-                                                )}
                                             </div>
                                         )}
                                     </FieldArray>
                                 </CardContent>
                             </Card>
 
-                            {/* Suggested Tests */}
+                            {/* Tests */}
                             <Card className="border-green-100">
                                 <CardHeader className="bg-green-50">
                                     <CardTitle className="flex items-center gap-2 text-green-600">
@@ -283,10 +269,10 @@ const Prescription = () => {
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent>
-                                    <FieldArray name="suggestedTests">
+                                    <FieldArray name="test">
                                         {({ push, remove }) => (
                                             <div className="space-y-4">
-                                                {values.suggestedTests.map((test, index) => (
+                                                {values.test.map((_, index) => (
                                                     <div
                                                         key={index}
                                                         className="p-4 border border-green-100 rounded-lg bg-white"
@@ -310,21 +296,16 @@ const Prescription = () => {
                                                                 <Label className="text-green-700 font-medium">Test Name *</Label>
                                                                 <Field
                                                                     as={Input}
-                                                                    name={`suggestedTests.${index}.testName`}
+                                                                    name={`test.${index}.name`}
                                                                     placeholder="e.g., Blood Test"
                                                                     className="mt-1 placeholder:text-gray-400"
-                                                                />
-                                                                <ErrorMessage
-                                                                    name={`suggestedTests.${index}.testName`}
-                                                                    component="p"
-                                                                    className="text-red-500 text-sm mt-1"
                                                                 />
                                                             </div>
                                                             <div>
                                                                 <Label className="text-green-700 font-medium">Urgency</Label>
                                                                 <Field
                                                                     as={Input}
-                                                                    name={`suggestedTests.${index}.urgency`}
+                                                                    name={`test.${index}.urgency`}
                                                                     placeholder="e.g., Routine"
                                                                     className="mt-1 placeholder:text-gray-400"
                                                                 />
@@ -333,7 +314,7 @@ const Prescription = () => {
                                                                 <Label className="text-green-700 font-medium">Reason</Label>
                                                                 <Field
                                                                     as={Input}
-                                                                    name={`suggestedTests.${index}.reason`}
+                                                                    name={`test.${index}.reason`}
                                                                     placeholder="Reason for test"
                                                                     className="mt-1 placeholder:text-gray-400"
                                                                 />
@@ -345,7 +326,7 @@ const Prescription = () => {
                                                     type="button"
                                                     variant="outline"
                                                     onClick={() =>
-                                                        push({ testName: "", reason: "", urgency: "" })
+                                                        push({ name: "", reason: "", urgency: "" })
                                                     }
                                                     className="w-full border-green-500 text-green-600 hover:bg-green-50"
                                                 >
@@ -372,14 +353,14 @@ const Prescription = () => {
                                 <CardContent>
                                     <Field
                                         as={Textarea}
-                                        name="notes"
+                                        name="note"
                                         placeholder="Follow-up instructions, precautions..."
                                         className="min-h-[120px] resize-none placeholder:text-gray-400"
                                     />
                                 </CardContent>
                             </Card>
 
-                            {/* Submit Button */}
+                            {/* Submit */}
                             <div className="flex justify-center">
                                 <Button
                                     type="submit"

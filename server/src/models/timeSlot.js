@@ -43,8 +43,13 @@ const timeSlotSchema = new Schema(
     },
     status: {
       type: String,
-      enum: [, "In Progress", "Completed", "Cancelled", "Schedual", "No Show"],
+      enum: ["In Progress", "Booked", "Completed", "Cancelled", "Schedual"],
       default: "Schedual",
+    },
+    prescrption: {
+      type: Schema.Types.ObjectId,
+      ref: "Prescription",
+      default: null,
     },
   },
   { timestamps: true }

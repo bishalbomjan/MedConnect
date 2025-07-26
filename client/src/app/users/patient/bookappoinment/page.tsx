@@ -33,7 +33,7 @@ const specializations = [
 ];
 
 const PatientHome = () => {
-    const [patient, setPatient] = useState<any>(null);
+    const [patient, setPatient] = useState([]);
     const { _id } = useSelector((state: any) => state.user);
     const [selectedSpecialization, setSelectedSpecialization] = useState<string>('');
     const [availableDoctors, setAvailableDoctors] = useState<any[]>([]);
@@ -45,18 +45,21 @@ const PatientHome = () => {
             .min(new Date().toISOString().split('T')[0], 'Cannot select past dates')
             .typeError('Please enter a valid date'),
     });
-    useEffect(() => {
-        fetchPatient();
-    }, []);
+
     const today = new Date().toISOString().split('T')[0];
     const fetchPatient = async () => {
         try {
             const response = await apiClient.get(`/patientKyc/${_id}`);
             setPatient(response.data);
+            debugger
         } catch (err) {
             console.error('Failed to fetch patient:', err);
         }
     };
+    useEffect(() => {
+        debugger
+        fetchPatient();
+    }, []);
 
     const fetchSpecificDoctor = async (specialization: string) => {
         try {
@@ -227,17 +230,16 @@ const PatientHome = () => {
             </Card>
         </div>
     );
-
+    if (patient.length === 0) return <div className="p-6">
+        <p>You haven't submit the kyc form. Please Enter the kyc form.</p>
+        <Button asChild>
+            <Link href="/patientKYC">Enter your KYC Details</Link>
+        </Button>
+    </div>
+    if (patient.length !== 0 && patient.isKycApproved === false) return <p>You are not verified yet.</p>
     return (
         <div className="min-h-screen bg-gradient-to-br from-green-50 to-white">
-            {!patient && (
-                <div className="p-6">
-                    <Button asChild>
-                        <Link href="/patientKYC">Enter your KYC Details</Link>
-                    </Button>
-                </div>
-            )}
-
+            debugger;
             <header className="bg-white shadow-sm border-b border-green-100">
                 <div className="max-w-7xl mx-auto px-6 py-4">
                     <div className="flex items-center justify-between">

@@ -208,6 +208,7 @@ __turbopack_context__.s({
     "default": (()=>__TURBOPACK__default__export__)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/formik/dist/formik.esm.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$yup$2f$index$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/yup/index.esm.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/card.tsx [app-client] (ecmascript)");
@@ -221,9 +222,12 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/sonner/dist/index.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$api$2d$client$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/api-client.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$react$2d$redux$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-redux/dist/react-redux.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
+;
+;
 ;
 ;
 ;
@@ -259,6 +263,55 @@ const DoctorCreateSlot = ()=>{
         const response = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$api$2d$client$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post(`/timeslot/${_id}`, values);
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"])(response.data.message);
     };
+    const [doctor, setDoctor] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "DoctorCreateSlot.useEffect": ()=>{
+            fetchDoctor();
+        }
+    }["DoctorCreateSlot.useEffect"], []);
+    const fetchDoctor = async ()=>{
+        try {
+            const response = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$api$2d$client$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`/doctorkycs/${_id}`);
+            setDoctor(response.data);
+        } catch (err) {
+            console.error("Failed to fetch doctor:", err);
+        }
+    };
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
+    if (doctor.length === 0) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    children: "You haven't submitted the Kyc form"
+                }, void 0, false, {
+                    fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
+                    lineNumber: 65,
+                    columnNumber: 14
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                    onClick: ()=>router.push('/doctorKYC'),
+                    children: "Please fill Kyc From"
+                }, void 0, false, {
+                    fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
+                    lineNumber: 66,
+                    columnNumber: 13
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
+            lineNumber: 65,
+            columnNumber: 9
+        }, this)
+    }, void 0, false);
+    if (doctor.length !== 0 && doctor.isKycApproved === false) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+            children: "You haven't approved Yet."
+        }, void 0, false, {
+            fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
+            lineNumber: 68,
+            columnNumber: 73
+        }, this)
+    }, void 0, false);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "min-h-screen bg-gradient-to-br from-green-50 to-white p-6",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -272,7 +325,7 @@ const DoctorCreateSlot = ()=>{
                             children: "Create Time Slot"
                         }, void 0, false, {
                             fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                            lineNumber: 55,
+                            lineNumber: 73,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -280,13 +333,13 @@ const DoctorCreateSlot = ()=>{
                             children: "Add a new appointment time slot for your patients"
                         }, void 0, false, {
                             fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                            lineNumber: 56,
+                            lineNumber: 74,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                    lineNumber: 54,
+                    lineNumber: 72,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -301,19 +354,19 @@ const DoctorCreateSlot = ()=>{
                                         className: "w-6 h-6 mr-2"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                        lineNumber: 62,
+                                        lineNumber: 80,
                                         columnNumber: 29
                                     }, this),
                                     "New Time Slot"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                lineNumber: 61,
+                                lineNumber: 79,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                            lineNumber: 60,
+                            lineNumber: 78,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -335,14 +388,14 @@ const DoctorCreateSlot = ()=>{
                                                                 className: "w-4 h-4 mr-2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                                lineNumber: 78,
+                                                                lineNumber: 96,
                                                                 columnNumber: 45
                                                             }, this),
                                                             "Date"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                        lineNumber: 77,
+                                                        lineNumber: 95,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Field"], {
@@ -354,7 +407,7 @@ const DoctorCreateSlot = ()=>{
                                                         className: "border-green-200 focus:border-green-500 focus:ring-green-500 mt-2"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                        lineNumber: 81,
+                                                        lineNumber: 99,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ErrorMessage"], {
@@ -363,13 +416,13 @@ const DoctorCreateSlot = ()=>{
                                                         className: "text-red-600 text-sm mt-1"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                        lineNumber: 89,
+                                                        lineNumber: 107,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                lineNumber: 76,
+                                                lineNumber: 94,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -385,14 +438,14 @@ const DoctorCreateSlot = ()=>{
                                                                         className: "w-4 h-4 mr-2"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                                        lineNumber: 96,
+                                                                        lineNumber: 114,
                                                                         columnNumber: 49
                                                                     }, this),
                                                                     "Start Time"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                                lineNumber: 95,
+                                                                lineNumber: 113,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Field"], {
@@ -404,7 +457,7 @@ const DoctorCreateSlot = ()=>{
                                                                 className: "border-green-200 focus:border-green-500 focus:ring-green-500 mt-2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                                lineNumber: 99,
+                                                                lineNumber: 117,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ErrorMessage"], {
@@ -413,13 +466,13 @@ const DoctorCreateSlot = ()=>{
                                                                 className: "text-red-600 text-sm mt-1"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                                lineNumber: 107,
+                                                                lineNumber: 125,
                                                                 columnNumber: 45
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                        lineNumber: 94,
+                                                        lineNumber: 112,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -432,14 +485,14 @@ const DoctorCreateSlot = ()=>{
                                                                         className: "w-4 h-4 mr-2"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                                        lineNumber: 112,
+                                                                        lineNumber: 130,
                                                                         columnNumber: 49
                                                                     }, this),
                                                                     "End Time"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                                lineNumber: 111,
+                                                                lineNumber: 129,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Field"], {
@@ -451,7 +504,7 @@ const DoctorCreateSlot = ()=>{
                                                                 className: "border-green-200 focus:border-green-500 focus:ring-green-500 mt-2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                                lineNumber: 115,
+                                                                lineNumber: 133,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ErrorMessage"], {
@@ -460,19 +513,19 @@ const DoctorCreateSlot = ()=>{
                                                                 className: "text-red-600 text-sm mt-1"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                                lineNumber: 123,
+                                                                lineNumber: 141,
                                                                 columnNumber: 45
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                        lineNumber: 110,
+                                                        lineNumber: 128,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                lineNumber: 93,
+                                                lineNumber: 111,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -485,7 +538,7 @@ const DoctorCreateSlot = ()=>{
                                                                 className: "w-5 h-5"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                                lineNumber: 130,
+                                                                lineNumber: 148,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -493,13 +546,13 @@ const DoctorCreateSlot = ()=>{
                                                                 children: "Doctor: Dr. John Smith"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                                lineNumber: 131,
+                                                                lineNumber: 149,
                                                                 columnNumber: 45
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                        lineNumber: 129,
+                                                        lineNumber: 147,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -507,13 +560,13 @@ const DoctorCreateSlot = ()=>{
                                                         children: "This time slot will be created for your account"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                        lineNumber: 133,
+                                                        lineNumber: 151,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                lineNumber: 128,
+                                                lineNumber: 146,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -527,7 +580,7 @@ const DoctorCreateSlot = ()=>{
                                                         children: "Clear Form"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                        lineNumber: 140,
+                                                        lineNumber: 158,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -540,7 +593,7 @@ const DoctorCreateSlot = ()=>{
                                                                     className: "w-4 h-4 mr-2 animate-spin"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                                    lineNumber: 155,
+                                                                    lineNumber: 173,
                                                                     columnNumber: 53
                                                                 }, this),
                                                                 "Creating..."
@@ -551,7 +604,7 @@ const DoctorCreateSlot = ()=>{
                                                                     className: "w-4 h-4 mr-2"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                                    lineNumber: 160,
+                                                                    lineNumber: 178,
                                                                     columnNumber: 53
                                                                 }, this),
                                                                 "Create Time Slot"
@@ -559,35 +612,35 @@ const DoctorCreateSlot = ()=>{
                                                         }, void 0, true)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                        lineNumber: 148,
+                                                        lineNumber: 166,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                                lineNumber: 139,
+                                                lineNumber: 157,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                        lineNumber: 74,
+                                        lineNumber: 92,
                                         columnNumber: 33
                                     }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                lineNumber: 68,
+                                lineNumber: 86,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                            lineNumber: 67,
+                            lineNumber: 85,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                    lineNumber: 59,
+                    lineNumber: 77,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -600,7 +653,7 @@ const DoctorCreateSlot = ()=>{
                                 children: "Time Slot Guidelines"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                lineNumber: 175,
+                                lineNumber: 193,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -610,62 +663,63 @@ const DoctorCreateSlot = ()=>{
                                         children: "• Each time slot should be at least 30 minutes long"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                        lineNumber: 177,
+                                        lineNumber: 195,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                         children: "• Make sure to leave buffer time between appointments"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                        lineNumber: 178,
+                                        lineNumber: 196,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                         children: "• Time slots are automatically marked as available for booking"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                        lineNumber: 179,
+                                        lineNumber: 197,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                         children: "• You can view and manage your slots in the Time Slots section"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                        lineNumber: 180,
+                                        lineNumber: 198,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                                lineNumber: 176,
+                                lineNumber: 194,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                        lineNumber: 174,
+                        lineNumber: 192,
                         columnNumber: 21
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-                    lineNumber: 173,
+                    lineNumber: 191,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-            lineNumber: 53,
+            lineNumber: 71,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/users/doctor/timeSlot/page.tsx",
-        lineNumber: 52,
+        lineNumber: 70,
         columnNumber: 9
     }, this);
 };
-_s(DoctorCreateSlot, "A8bt25zG8oj2hszaGGiv7zYYGj0=", false, function() {
+_s(DoctorCreateSlot, "iD+k54UD7PcFJaTi3hgG3uNWB7g=", false, function() {
     return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$react$2d$redux$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSelector"]
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$react$2d$redux$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSelector"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];
 });
 _c = DoctorCreateSlot;

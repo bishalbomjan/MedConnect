@@ -1,7 +1,6 @@
 // routes/timeSlotRoute.js
 import { Router } from "express";
 import TimeSlot from "../models/timeSlot.js";
-import mongoose from "mongoose";
 
 const timeSlotRoute = Router();
 
@@ -10,11 +9,13 @@ const timeSlotRoute = Router();
  * POST /timeslot/:doctorId
  * Body: { date, startTime, endTime }
  */
+
 timeSlotRoute.post("/timeslot/:doctorId", async (req, res) => {
   try {
     const { date, startTime, endTime } = req.body;
     const created = await TimeSlot.create({
       doctorId: req.params.doctorId,
+      doctor: req.params.doctorId,
       date,
       startTime,
       endTime,
@@ -79,6 +80,7 @@ timeSlotRoute.patch("/timeslot/book/:slotId/:patientId", async (req, res) => {
 
     slot.isBooked = true;
     slot.bookedById = req.params.patientId;
+    slot.status = "Booked";
     await slot.save();
 
     res.send({ message: "Time slot booked successfully.", data: slot });
@@ -86,6 +88,37 @@ timeSlotRoute.patch("/timeslot/book/:slotId/:patientId", async (req, res) => {
     res.status(500).send({ error: "Failed to book time slot." });
   }
 });
+timeSlotRoute.patch(
+  "/timeslot/cancel/:doctorId/:patientId",
+  async (req, res) => {
+    const filter = {
+      doctorId: req.params.doctorId,
+      bookedById: req.params.patientId, // Fixed this line
+    };
+
+    try {
+      const slot = await TimeSlot.findOne(filter);
+
+      if (!slot) {
+        return res.status(404).send({ message: "Time slot not found." });
+      }
+
+      if (!slot.isBooked) {
+        return res.status(400).send({ message: "Time slot is not booked." });
+      }
+
+      slot.isBooked = false;
+      slot.bookedById = null; // Clear bookedById on cancellation
+      slot.status = "Cancelled";
+      await slot.save();
+
+      res.send({ message: "Time slot canceled successfully.", data: slot });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send({ error: "Failed to cancel time slot." });
+    }
+  }
+);
 
 /**
  * Delete a time slot

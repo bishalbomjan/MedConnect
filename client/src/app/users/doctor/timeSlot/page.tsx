@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,7 +10,7 @@ import { Calendar, Clock, Plus, User } from 'lucide-react';
 import { toast } from 'sonner';
 import apiClient from '@/app/api-client';
 import { useSelector } from 'react-redux';
-
+import { useRouter } from 'next/navigation';
 const timeSlotSchema = Yup.object().shape({
     date: Yup.string().required('Date is required'),
     startTime: Yup.string()
@@ -47,7 +47,25 @@ const DoctorCreateSlot = () => {
         const response = await apiClient.post(`/timeslot/${_id}`, values)
         toast(response.data.message)
     };
+    const [doctor, setDoctor] = useState([]);
+    useEffect(() => {
+        fetchDoctor();
+    }, []);
 
+    const fetchDoctor = async () => {
+        try {
+            const response = await apiClient.get(`/doctorkycs/${_id}`);
+            setDoctor(response.data);
+        } catch (err) {
+            console.error("Failed to fetch doctor:", err);
+        }
+    };
+    const router = useRouter()
+    if (doctor.length === 0) return <>
+        <div><p>You haven't submitted the Kyc form</p>
+            <Button onClick={() => router.push('/doctorKYC')}>Please fill Kyc From</Button></div>
+    </>
+    if (doctor.length !== 0 && doctor.isKycApproved === false) return <><p>You haven't approved Yet.</p ></>
     return (
         <div className="min-h-screen bg-gradient-to-br from-green-50 to-white p-6">
             <div className="max-w-2xl mx-auto">

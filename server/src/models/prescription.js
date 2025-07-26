@@ -3,24 +3,13 @@ const { Schema } = mongoose;
 
 const prescriptionSchema = new Schema(
   {
-    appointmentId: {
-      type: Schema.Types.ObjectId,
-      ref: "Appointment",
-      required: true,
-    },
-    doctorId: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
-    patientId: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
+    examinationNote: {
+      notes: String,
+      diagnosis: String,
     },
     medications: [
       {
-        name: { type: String, required: true },
+        name: { type: String },
         dosage: String,
         frequency: String,
         duration: String,
@@ -29,15 +18,11 @@ const prescriptionSchema = new Schema(
     ],
     test: [
       {
-        name: { type: String, required: true },
+        name: String,
         urgency: String,
-        Reason: String,
+        reason: String,
       },
     ],
-    examinationNote: {
-      notes: String,
-      diagnosis: String,
-    },
     note: String,
   },
   {

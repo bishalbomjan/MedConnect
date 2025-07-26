@@ -9,7 +9,12 @@ routerPatient.post("/patientKyc/:id", async (req, res) => {
     return res
       .status(400)
       .send({ message: "You have already submitted a KYC form" });
-  Patient.create({ patient: req.params.id, isKycSubmitted: true, ...req.body });
+  Patient.create({
+    _id: req.params.id,
+    patient: req.params.id,
+    isKycSubmitted: true,
+    ...req.body,
+  });
   return res.send({ message: "Patient Kyc details submitted successfully" });
 });
 

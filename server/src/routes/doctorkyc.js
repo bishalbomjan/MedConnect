@@ -5,12 +5,17 @@ import sendEmail from "../utils/sendEmail.js";
 const routerDoctor = Router();
 
 routerDoctor.post("/doctorkycs/:id", async (req, res) => {
-  const doc = await Doctor.findOne({ doctor: req.params.id });
+  const doc = await Doctor.findOne({ _id: req.params.id });
   if (doc)
     return res
       .status(400)
       .send({ message: "Kyc form has been already submitted" });
-  Doctor.create({ doctor: req.params.id, isKycSubmitted: true, ...req.body });
+  Doctor.create({
+    doctor: req.params.id,
+    _id: req.params.id,
+    isKycSubmitted: true,
+    ...req.body,
+  });
   return res.send({ message: "Doctor Kyc details submitted successfully" });
 });
 
@@ -50,7 +55,9 @@ routerDoctor.get("/doctorkycs", async (req, res) => {
 });
 
 routerDoctor.get("/doctorkycs/:id", async (req, res) => {
-  const kyc = await Doctor.findOne({ doctor: req.params.id });
+  const kyc = await Doctor.findOne({ doctor: req.params.id }).populate(
+    "doctor"
+  );
   if (!kyc)
     return res.status(404).send({
       message: "Doctor details not found, Please fill Kyc detail",

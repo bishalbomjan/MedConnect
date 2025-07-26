@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Prescription from "../models/prescription.js";
+import TimeSlot from "../models/timeSlot.js";
 
 const prescriptionRoute = Router();
 
@@ -27,12 +28,18 @@ prescriptionRoute.get("/prescription", async (req, res) => {
   }
 });
 
-prescriptionRoute.post("/prescription", async (req, res) => {
+prescriptionRoute.post("/prescription/:timeSlotId", async (req, res) => {
   try {
+    console.log(req.body);
     const created = await Prescription.create({ ...req.body });
+    const updateTimeSlot = await TimeSlot.findById(req.params.timeSlotId);
+    if (!updateTimeSlot)
+      return res.status(404).json({ message: "Time slot not found." });
+    updateTimeSlot.prescrption = created._id;
+    await updateTimeSlot.save();
     res.send({ message: "Prescription created successfully", data: created });
   } catch (err) {
-    res.status(500).send({ error: "Failed to create prescription." });
+    res.status(500).send({ message: "Failed to create prescription." });
   }
 });
 
