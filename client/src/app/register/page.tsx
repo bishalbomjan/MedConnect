@@ -11,7 +11,7 @@ import { User, Mail, Phone, MapPin, Lock, Stethoscope } from 'lucide-react';
 import Link from 'next/link';
 import apiClient from '../api-client.js'
 import { toast } from 'sonner';
-
+import { useRouter } from 'next/router.js';
 
 // Validation schema using Yup
 const registerSchema = Yup.object().shape({
@@ -50,11 +50,11 @@ const initialValues = {
 };
 
 const Register = () => {
-
-
-    const handleSubmit = async (values: typeof initialValues, { setSubmitting }: any) => {
+    const router = useRouter()
+    const handleSubmit = async (values: typeof initialValues) => {
         const { data } = await apiClient.post('/register', values)
-        toast(data)
+        toast(data.message)
+        router.push('/loginPage')
     };
 
     return (

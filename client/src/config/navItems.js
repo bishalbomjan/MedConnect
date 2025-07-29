@@ -8,7 +8,7 @@ export const sidebarMenu = {
   ],
   doctor: [
     { label: "My Profile", path: "/users/doctor/profile", icon: Heart },
-    { label: "My Appoinment", path: "/users/doctor/appoinment", icon: Heart },
+    { label: "My Appoinment", path: "/users/doctor/appointment", icon: Heart },
     { label: "Create TimeSlot", path: "/users/doctor/timeSlot", icon: Clock },
   ],
   patient: [

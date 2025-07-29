@@ -54,7 +54,8 @@ timeSlotRoute.get("/timeslot", async (req, res) => {
 
     const slots = await TimeSlot.find(filter)
       .sort({ date: 1, startTime: 1 })
-      .populate("doctorId bookedById");
+      .populate("doctorId")
+      .populate("bookedById");
 
     return res.send(slots);
   } catch (err) {
