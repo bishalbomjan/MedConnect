@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import apiClient from "@/app/api-client";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 // Define type for form data
 type FormData = {
@@ -30,7 +31,7 @@ const PatientProfile = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState<FormData>({});
     const { _id } = useSelector((state: any) => state.user);
-
+    const router = useRouter()
     useEffect(() => {
         fetchProfilePatient();
     }, []);
@@ -280,7 +281,7 @@ const PatientProfile = () => {
                                 </div>
 
                                 {!formData.isKycSubmitted && (
-                                    <Button className="w-full bg-green-600 text-white hover:bg-green-700">
+                                    <Button className="w-full bg-green-600 text-white hover:bg-green-700" onClick={() => router.push('/patientKYC')}>
                                         Submit KYC Documents
                                     </Button>
                                 )}

@@ -73,7 +73,7 @@ const PatientHome = () => {
 
     const handleTimeSlot = async (values: { appointmentDate: string }) => {
         const res = await apiClient.get(`/timeslot?doctorId=${selectedDoctor.doctor._id}&date=${values.appointmentDate}`)
-        setTiming(res.data)
+        setTiming(res.data.slots)
     };
 
     const handleBookAppointment = async (id) => {

@@ -602,6 +602,7 @@ __turbopack_context__.s({
     "default": (()=>__TURBOPACK__default__export__)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/formik/dist/formik.esm.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$yup$2f$index$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/yup/index.esm.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/button.tsx [app-ssr] (ecmascript)");
@@ -620,6 +621,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$api$2d$client$
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$react$2d$redux$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-redux/dist/react-redux.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/sonner/dist/index.mjs [app-ssr] (ecmascript)");
 'use client';
+;
 ;
 ;
 ;
@@ -669,6 +671,7 @@ const DoctorKyc = ()=>{
         fullname: '',
         degree: '',
         NMCID: '',
+        price: "",
         specializations: [
             ''
         ],
@@ -680,9 +683,19 @@ const DoctorKyc = ()=>{
         ],
         experienceYear: ''
     };
+    const [uplodedFiles, setUplodedFiles] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const { _id } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$react$2d$redux$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useSelector"])((state)=>state.user);
     const handleSubmit = async (values)=>{
-        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$api$2d$client$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].post(`/doctorkycs/${_id}`, values);
+        const formData = new FormData();
+        formData.append('uplodedFiles', uplodedFiles);
+        formData.append('fullname', values.fullname);
+        formData.append('degree', values.degree);
+        formData.append('NMCID', values.NMCID);
+        formData.append('price', values.price);
+        formData.append('specializations', values.specializations);
+        formData.append('experience', values.experience);
+        formData.append('experienceYear', values.experienceYear);
+        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$api$2d$client$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].post(`/doctorkycs/${_id}`, formData);
         console.log(response.data.message);
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"])(response.data.message);
     };
@@ -702,17 +715,17 @@ const DoctorKyc = ()=>{
                                     className: "w-6 h-6 text-white"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                    lineNumber: 84,
+                                    lineNumber: 94,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                lineNumber: 83,
+                                lineNumber: 93,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/doctorKYC/page.tsx",
-                            lineNumber: 82,
+                            lineNumber: 92,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -720,7 +733,7 @@ const DoctorKyc = ()=>{
                             children: "Doctor KYC Verification"
                         }, void 0, false, {
                             fileName: "[project]/src/app/doctorKYC/page.tsx",
-                            lineNumber: 87,
+                            lineNumber: 97,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -728,13 +741,13 @@ const DoctorKyc = ()=>{
                             children: "Complete your profile to join MedConnect"
                         }, void 0, false, {
                             fileName: "[project]/src/app/doctorKYC/page.tsx",
-                            lineNumber: 88,
+                            lineNumber: 98,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/doctorKYC/page.tsx",
-                    lineNumber: 81,
+                    lineNumber: 91,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -749,19 +762,19 @@ const DoctorKyc = ()=>{
                                         className: "w-5 h-5 mr-2"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                        lineNumber: 94,
+                                        lineNumber: 104,
                                         columnNumber: 29
                                     }, this),
                                     "Professional Information"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                lineNumber: 93,
+                                lineNumber: 103,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/doctorKYC/page.tsx",
-                            lineNumber: 92,
+                            lineNumber: 102,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -779,13 +792,50 @@ const DoctorKyc = ()=>{
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "space-y-2",
                                                         children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                                className: "block text-sm font-medium text-gray-700 mb-1",
+                                                                children: "Profile Picture"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/doctorKYC/page.tsx",
+                                                                lineNumber: 120,
+                                                                columnNumber: 45
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Field"], {
+                                                                type: "file",
+                                                                onChange: (e)=>setUplodedFiles(e.target.files[0]),
+                                                                name: "imageUrl",
+                                                                className: "w-full p-3 border border-yellow-500 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all",
+                                                                placeholder: "https://example.com/food-image.jpg"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/doctorKYC/page.tsx",
+                                                                lineNumber: 123,
+                                                                columnNumber: 45
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ErrorMessage"], {
+                                                                name: "imageUrl",
+                                                                component: "div",
+                                                                className: "text-red-500 text-sm mt-1"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/doctorKYC/page.tsx",
+                                                                lineNumber: 130,
+                                                                columnNumber: 45
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/app/doctorKYC/page.tsx",
+                                                        lineNumber: 119,
+                                                        columnNumber: 41
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "space-y-2",
+                                                        children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Label"], {
                                                                 htmlFor: "fullname",
                                                                 className: "text-green-700 font-medium",
                                                                 children: "Full Name *"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                lineNumber: 109,
+                                                                lineNumber: 138,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Field"], {
@@ -796,7 +846,7 @@ const DoctorKyc = ()=>{
                                                                 className: "border-green-200 focus:border-green-500 focus:ring-green-500"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                lineNumber: 112,
+                                                                lineNumber: 141,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ErrorMessage"], {
@@ -805,13 +855,51 @@ const DoctorKyc = ()=>{
                                                                 className: "text-red-500 text-sm"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                lineNumber: 119,
+                                                                lineNumber: 148,
                                                                 columnNumber: 45
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                        lineNumber: 108,
+                                                        lineNumber: 136,
+                                                        columnNumber: 41
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "space-y-2",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Label"], {
+                                                                htmlFor: "price",
+                                                                className: "text-green-700 font-medium",
+                                                                children: "Price"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/doctorKYC/page.tsx",
+                                                                lineNumber: 152,
+                                                                columnNumber: 45
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Field"], {
+                                                                as: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"],
+                                                                id: "price",
+                                                                name: "price",
+                                                                placeholder: "रु ७००",
+                                                                className: "border-green-200 focus:border-green-500 focus:ring-green-500"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/doctorKYC/page.tsx",
+                                                                lineNumber: 155,
+                                                                columnNumber: 45
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ErrorMessage"], {
+                                                                name: "fullname",
+                                                                component: "div",
+                                                                className: "text-red-500 text-sm"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/doctorKYC/page.tsx",
+                                                                lineNumber: 162,
+                                                                columnNumber: 45
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/app/doctorKYC/page.tsx",
+                                                        lineNumber: 150,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -823,7 +911,7 @@ const DoctorKyc = ()=>{
                                                                 children: "Medical Degree *"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                lineNumber: 122,
+                                                                lineNumber: 165,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Field"], {
@@ -834,7 +922,7 @@ const DoctorKyc = ()=>{
                                                                 className: "border-green-200 focus:border-green-500 focus:ring-green-500"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                lineNumber: 125,
+                                                                lineNumber: 168,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ErrorMessage"], {
@@ -843,19 +931,19 @@ const DoctorKyc = ()=>{
                                                                 className: "text-red-500 text-sm"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                lineNumber: 132,
+                                                                lineNumber: 175,
                                                                 columnNumber: 45
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                        lineNumber: 121,
+                                                        lineNumber: 164,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                lineNumber: 107,
+                                                lineNumber: 117,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -867,7 +955,7 @@ const DoctorKyc = ()=>{
                                                         children: "NMC Registration ID *"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                        lineNumber: 138,
+                                                        lineNumber: 181,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Field"], {
@@ -878,7 +966,7 @@ const DoctorKyc = ()=>{
                                                         className: "border-green-200 focus:border-green-500 focus:ring-green-500"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                        lineNumber: 141,
+                                                        lineNumber: 184,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ErrorMessage"], {
@@ -887,13 +975,13 @@ const DoctorKyc = ()=>{
                                                         className: "text-red-500 text-sm"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                        lineNumber: 148,
+                                                        lineNumber: 191,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                lineNumber: 137,
+                                                lineNumber: 180,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -905,7 +993,7 @@ const DoctorKyc = ()=>{
                                                         children: "Total Years of Experience *"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                        lineNumber: 153,
+                                                        lineNumber: 196,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Field"], {
@@ -916,7 +1004,7 @@ const DoctorKyc = ()=>{
                                                         className: "border-green-200 focus:border-green-500 focus:ring-green-500"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                        lineNumber: 156,
+                                                        lineNumber: 199,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ErrorMessage"], {
@@ -925,13 +1013,13 @@ const DoctorKyc = ()=>{
                                                         className: "text-red-500 text-sm"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                        lineNumber: 163,
+                                                        lineNumber: 206,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                lineNumber: 152,
+                                                lineNumber: 195,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -944,14 +1032,14 @@ const DoctorKyc = ()=>{
                                                                 className: "w-4 h-4 mr-2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                lineNumber: 169,
+                                                                lineNumber: 212,
                                                                 columnNumber: 45
                                                             }, this),
                                                             "Specializations *"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                        lineNumber: 168,
+                                                        lineNumber: 211,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FieldArray"], {
@@ -975,12 +1063,12 @@ const DoctorKyc = ()=>{
                                                                                                         placeholder: "Select a specialization"
                                                                                                     }, void 0, false, {
                                                                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                                        lineNumber: 183,
+                                                                                                        lineNumber: 226,
                                                                                                         columnNumber: 73
                                                                                                     }, this)
                                                                                                 }, void 0, false, {
                                                                                                     fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                                    lineNumber: 182,
+                                                                                                    lineNumber: 225,
                                                                                                     columnNumber: 69
                                                                                                 }, this),
                                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -989,18 +1077,18 @@ const DoctorKyc = ()=>{
                                                                                                             children: option
                                                                                                         }, option, false, {
                                                                                                             fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                                            lineNumber: 187,
+                                                                                                            lineNumber: 230,
                                                                                                             columnNumber: 77
                                                                                                         }, this))
                                                                                                 }, void 0, false, {
                                                                                                     fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                                    lineNumber: 185,
+                                                                                                    lineNumber: 228,
                                                                                                     columnNumber: 69
                                                                                                 }, this)
                                                                                             ]
                                                                                         }, void 0, true, {
                                                                                             fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                            lineNumber: 178,
+                                                                                            lineNumber: 221,
                                                                                             columnNumber: 65
                                                                                         }, this),
                                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ErrorMessage"], {
@@ -1009,13 +1097,13 @@ const DoctorKyc = ()=>{
                                                                                             className: "text-red-500 text-sm mt-1"
                                                                                         }, void 0, false, {
                                                                                             fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                            lineNumber: 193,
+                                                                                            lineNumber: 236,
                                                                                             columnNumber: 65
                                                                                         }, this)
                                                                                     ]
                                                                                 }, void 0, true, {
                                                                                     fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                    lineNumber: 177,
+                                                                                    lineNumber: 220,
                                                                                     columnNumber: 61
                                                                                 }, this),
                                                                                 values.specializations.length > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -1028,18 +1116,18 @@ const DoctorKyc = ()=>{
                                                                                         className: "w-4 h-4"
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                        lineNumber: 207,
+                                                                                        lineNumber: 250,
                                                                                         columnNumber: 69
                                                                                     }, this)
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                    lineNumber: 200,
+                                                                                    lineNumber: 243,
                                                                                     columnNumber: 65
                                                                                 }, this)
                                                                             ]
                                                                         }, index, true, {
                                                                             fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                            lineNumber: 176,
+                                                                            lineNumber: 219,
                                                                             columnNumber: 57
                                                                         }, this)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -1052,31 +1140,31 @@ const DoctorKyc = ()=>{
                                                                                 className: "w-4 h-4 mr-2"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                lineNumber: 218,
+                                                                                lineNumber: 261,
                                                                                 columnNumber: 57
                                                                             }, this),
                                                                             "Add Specialization"
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                        lineNumber: 212,
+                                                                        lineNumber: 255,
                                                                         columnNumber: 53
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                lineNumber: 174,
+                                                                lineNumber: 217,
                                                                 columnNumber: 49
                                                             }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                        lineNumber: 172,
+                                                        lineNumber: 215,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                lineNumber: 167,
+                                                lineNumber: 210,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1089,14 +1177,14 @@ const DoctorKyc = ()=>{
                                                                 className: "w-4 h-4 mr-2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                lineNumber: 229,
+                                                                lineNumber: 272,
                                                                 columnNumber: 45
                                                             }, this),
                                                             "Professional Experience"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                        lineNumber: 228,
+                                                        lineNumber: 271,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FieldArray"], {
@@ -1120,7 +1208,7 @@ const DoctorKyc = ()=>{
                                                                                                 ]
                                                                                             }, void 0, true, {
                                                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                                lineNumber: 239,
+                                                                                                lineNumber: 282,
                                                                                                 columnNumber: 69
                                                                                             }, this),
                                                                                             values.experience.length > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -1133,18 +1221,18 @@ const DoctorKyc = ()=>{
                                                                                                     className: "w-4 h-4"
                                                                                                 }, void 0, false, {
                                                                                                     fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                                    lineNumber: 248,
+                                                                                                    lineNumber: 291,
                                                                                                     columnNumber: 77
                                                                                                 }, this)
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                                lineNumber: 241,
+                                                                                                lineNumber: 284,
                                                                                                 columnNumber: 73
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                        lineNumber: 238,
+                                                                                        lineNumber: 281,
                                                                                         columnNumber: 65
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1159,7 +1247,7 @@ const DoctorKyc = ()=>{
                                                                                                         children: "Description"
                                                                                                     }, void 0, false, {
                                                                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                                        lineNumber: 254,
+                                                                                                        lineNumber: 297,
                                                                                                         columnNumber: 73
                                                                                                     }, this),
                                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Field"], {
@@ -1171,7 +1259,7 @@ const DoctorKyc = ()=>{
                                                                                                         rows: 3
                                                                                                     }, void 0, false, {
                                                                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                                        lineNumber: 257,
+                                                                                                        lineNumber: 300,
                                                                                                         columnNumber: 73
                                                                                                     }, this),
                                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ErrorMessage"], {
@@ -1180,13 +1268,13 @@ const DoctorKyc = ()=>{
                                                                                                         className: "text-red-500 text-sm"
                                                                                                     }, void 0, false, {
                                                                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                                        lineNumber: 265,
+                                                                                                        lineNumber: 308,
                                                                                                         columnNumber: 73
                                                                                                     }, this)
                                                                                                 ]
                                                                                             }, void 0, true, {
                                                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                                lineNumber: 253,
+                                                                                                lineNumber: 296,
                                                                                                 columnNumber: 69
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1198,7 +1286,7 @@ const DoctorKyc = ()=>{
                                                                                                         children: "Date"
                                                                                                     }, void 0, false, {
                                                                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                                        lineNumber: 272,
+                                                                                                        lineNumber: 315,
                                                                                                         columnNumber: 73
                                                                                                     }, this),
                                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Field"], {
@@ -1209,7 +1297,7 @@ const DoctorKyc = ()=>{
                                                                                                         className: "border-green-200 focus:border-green-500 focus:ring-green-500"
                                                                                                     }, void 0, false, {
                                                                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                                        lineNumber: 275,
+                                                                                                        lineNumber: 318,
                                                                                                         columnNumber: 73
                                                                                                     }, this),
                                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$formik$2f$dist$2f$formik$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ErrorMessage"], {
@@ -1218,30 +1306,30 @@ const DoctorKyc = ()=>{
                                                                                                         className: "text-red-500 text-sm"
                                                                                                     }, void 0, false, {
                                                                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                                        lineNumber: 282,
+                                                                                                        lineNumber: 325,
                                                                                                         columnNumber: 73
                                                                                                     }, this)
                                                                                                 ]
                                                                                             }, void 0, true, {
                                                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                                lineNumber: 271,
+                                                                                                lineNumber: 314,
                                                                                                 columnNumber: 69
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                        lineNumber: 252,
+                                                                                        lineNumber: 295,
                                                                                         columnNumber: 65
                                                                                     }, this)
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                lineNumber: 237,
+                                                                                lineNumber: 280,
                                                                                 columnNumber: 61
                                                                             }, this)
                                                                         }, index, false, {
                                                                             fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                            lineNumber: 236,
+                                                                            lineNumber: 279,
                                                                             columnNumber: 57
                                                                         }, this)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -1257,31 +1345,31 @@ const DoctorKyc = ()=>{
                                                                                 className: "w-4 h-4 mr-2"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                                lineNumber: 298,
+                                                                                lineNumber: 341,
                                                                                 columnNumber: 57
                                                                             }, this),
                                                                             "Add Experience"
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                        lineNumber: 292,
+                                                                        lineNumber: 335,
                                                                         columnNumber: 53
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                                lineNumber: 234,
+                                                                lineNumber: 277,
                                                                 columnNumber: 49
                                                             }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                        lineNumber: 232,
+                                                        lineNumber: 275,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                lineNumber: 227,
+                                                lineNumber: 270,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1293,45 +1381,45 @@ const DoctorKyc = ()=>{
                                                     children: isSubmitting ? 'Submitting...' : 'Submit KYC Application'
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                    lineNumber: 308,
+                                                    lineNumber: 351,
                                                     columnNumber: 41
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                                lineNumber: 307,
+                                                lineNumber: 350,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                        lineNumber: 105,
+                                        lineNumber: 115,
                                         columnNumber: 33
                                     }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/doctorKYC/page.tsx",
-                                lineNumber: 99,
+                                lineNumber: 109,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/doctorKYC/page.tsx",
-                            lineNumber: 98,
+                            lineNumber: 108,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/doctorKYC/page.tsx",
-                    lineNumber: 91,
+                    lineNumber: 101,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/doctorKYC/page.tsx",
-            lineNumber: 79,
+            lineNumber: 89,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/doctorKYC/page.tsx",
-        lineNumber: 78,
+        lineNumber: 88,
         columnNumber: 9
     }, this);
 };

@@ -11,7 +11,8 @@ import { User, Mail, Phone, MapPin, Lock, Stethoscope } from 'lucide-react';
 import Link from 'next/link';
 import apiClient from '../api-client.js'
 import { toast } from 'sonner';
-import { useRouter } from 'next/router.js';
+import { useRouter } from 'next/navigation.js';
+
 
 // Validation schema using Yup
 const registerSchema = Yup.object().shape({

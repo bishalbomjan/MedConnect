@@ -50,7 +50,7 @@ prescriptionRoute.delete("/prescription/:id", async (req, res) => {
     if (!deleted) {
       return res.status(404).send({ error: "Prescription not found." });
     }
-    res.send({ message: "Prescription deleted successfully" });
+    return res.send({ message: "Prescription deleted successfully" });
   } catch (err) {
     res.status(500).send({ error: "Failed to delete prescription." });
   }

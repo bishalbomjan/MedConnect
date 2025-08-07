@@ -1,7 +1,4 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/admin/appointment/page": "app/admin/appointment/page.js",
-  "/admin/doctor-approval/page": "app/admin/doctor-approval/page.js",
-  "/admin/patient-approval/page": "app/admin/patient-approval/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/users/doctor/appointment/page": "app/users/doctor/appointment/page.js"
 }

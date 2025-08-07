@@ -369,7 +369,7 @@ const PatientHome = ()=>{
     };
     const handleTimeSlot = async (values)=>{
         const res = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$api$2d$client$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].get(`/timeslot?doctorId=${selectedDoctor.doctor._id}&date=${values.appointmentDate}`);
-        setTiming(res.data);
+        setTiming(res.data.slots);
     };
     const handleBookAppointment = async (id)=>{
         const res = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$api$2d$client$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].patch(`/timeslot/book/${id}/${_id}`);

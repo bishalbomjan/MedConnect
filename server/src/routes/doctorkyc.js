@@ -1,23 +1,37 @@
 import { Router } from "express";
 import Doctor from "../models/doctorKyc.js";
 import sendEmail from "../utils/sendEmail.js";
-
+import multer from "multer";
 const routerDoctor = Router();
 
-routerDoctor.post("/doctorkycs/:id", async (req, res) => {
-  const doc = await Doctor.findOne({ _id: req.params.id });
-  if (doc)
-    return res
-      .status(400)
-      .send({ message: "Kyc form has been already submitted" });
-  Doctor.create({
-    doctor: req.params.id,
-    _id: req.params.id,
-    isKycSubmitted: true,
-    ...req.body,
-  });
-  return res.send({ message: "Doctor Kyc details submitted successfully" });
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads");
+  },
+  
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
 });
+const upload = multer({ storage: storage });
+routerDoctor.post(
+  "/doctorkycs/:id",
+  upload.single("uplodedFiles"),
+  async (req, res) => {
+    const doc = await Doctor.findOne({ _id: req.params.id });
+    if (doc)
+      return res
+        .status(400)
+        .send({ message: "Kyc form has been already submitted" });
+    Doctor.create({
+      doctor: req.params.id,
+      _id: req.params.id,
+      isKycSubmitted: true,
+      ...req.body,
+    });
+    return res.send({ message: "Doctor Kyc details submitted successfully" });
+  }
+);
 
 routerDoctor.get("/doctorkycs", async (req, res) => {
   try {

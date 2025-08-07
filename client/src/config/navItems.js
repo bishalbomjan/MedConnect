@@ -1,14 +1,18 @@
-import { Stethoscope, Users, Heart, Clock } from "lucide-react";
+import { Stethoscope, Users, Calendar, Heart, Clock } from "lucide-react";
 
 export const sidebarMenu = {
   admin: [
-    { label: "DashBoard", path: "/admin/appoinment", icon: Heart },
+    { label: "DashBoard", path: "/admin/appointment", icon: Calendar },
     { label: "Doctor", path: "/admin/doctor-approval", icon: Stethoscope },
     { label: "Patient", path: "/admin/patient-approval", icon: Users },
   ],
   doctor: [
-    { label: "My Profile", path: "/users/doctor/profile", icon: Heart },
-    { label: "My Appoinment", path: "/users/doctor/appointment", icon: Heart },
+    {
+      label: "Appointments",
+      path: "/users/doctor/appointment",
+      icon: Calendar,
+    },
+    { label: "My Profile", path: "/users/doctor/profile", icon: Users },
     { label: "Create TimeSlot", path: "/users/doctor/timeSlot", icon: Clock },
   ],
   patient: [

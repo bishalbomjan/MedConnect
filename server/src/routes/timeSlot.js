@@ -36,31 +36,49 @@ timeSlotRoute.post("/timeslot/:doctorId", async (req, res) => {
 timeSlotRoute.get("/timeslot", async (req, res) => {
   try {
     const filter = {};
+    const limit = parseInt(req.query.limit) || 10;
+    const page = parseInt(req.query.page) || 1;
 
+    // Filter by doctorId
     if (req.query.doctorId) {
       filter.doctorId = req.query.doctorId;
     }
 
+    // Filter by date
     if (req.query.date) {
       const targetDate = new Date(req.query.date);
-      // if (isNaN(targetDate.getTime())) {
-      //   return res.status(400).send({ error: "Invalid date format." });
-      // }
-      // const nextDate = new Date(targetDate);
-      // nextDate.setDate(nextDate.getDate() + 1);
-
+      if (isNaN(targetDate.getTime())) {
+        return res.status(400).json({ error: "Invalid date format." });
+      }
       filter.date = targetDate;
     }
 
+    // Count total time slots
+    const totalAppointment = await TimeSlot.countDocuments();
+
+    // Count booked slots where bookedById exists and is not null
+    const booked = await TimeSlot.countDocuments({
+      bookedById: { $exists: true, $ne: null },
+    });
+
+    // Unbooked = total - booked
+    const unbooked = totalAppointment - booked;
+
+    // Fetch paginated slots
     const slots = await TimeSlot.find(filter)
       .sort({ date: 1, startTime: 1 })
       .populate("doctorId")
-      .populate("bookedById");
+      .populate({
+        path: "bookedById",
+        populate: { path: "patient" }, // This populates bookedById.patient
+      })
+      .skip((page - 1) * limit)
+      .limit(limit);
 
-    return res.send(slots);
+    return res.json({ slots, totalAppointment, booked, unbooked });
   } catch (err) {
     console.error("Fetch time slots error:", err);
-    return res.status(500).send({ error: "Failed to fetch time slots." });
+    return res.status(500).json({ error: "Failed to fetch time slots." });
   }
 });
 
@@ -158,6 +176,22 @@ timeSlotRoute.patch("/timeslot/unbook/:slotId", async (req, res) => {
     res.send({ message: "Time slot unbooked successfully.", data: slot });
   } catch (err) {
     res.status(500).send({ error: "Failed to unbook time slot." });
+  }
+});
+
+// completed status
+timeSlotRoute.patch("/timeslot/completed/:slotId", async (req, res) => {
+  try {
+    const slot = await TimeSlot.findById(req.params.slotId);
+    if (!slot)
+      return res
+        .status(400)
+        .json({ message: "Time slot for the given id is not found." });
+    slot.status = "Completed";
+    await slot.save();
+    return res.status(200).json({ message: "Time slot updated successfully." });
+  } catch (err) {
+    return res.status(500).json({ message: "Problem in server code." });
   }
 });
 

@@ -62,14 +62,24 @@ const DoctorKyc = () => {
         fullname: '',
         degree: '',
         NMCID: '',
+        price: "",
         specializations: [''],
         experience: [{ body: '', date: '' }],
         experienceYear: '', // NEW
     };
-
+    const [uplodedFiles, setUplodedFiles] = useState([])
     const { _id } = useSelector(state => state.user)
     const handleSubmit = async (values: any) => {
-        const response = await apiClient.post(`/doctorkycs/${_id}`, values)
+        const formData = new FormData()
+        formData.append('uplodedFiles', uplodedFiles)
+        formData.append('fullname', values.fullname)
+        formData.append('degree', values.degree)
+        formData.append('NMCID', values.NMCID)
+        formData.append('price', values.price)
+        formData.append('specializations', values.specializations)
+        formData.append('experience', values.experience)
+        formData.append('experienceYear', values.experienceYear)
+        const response = await apiClient.post(`/doctorkycs/${_id}`, formData)
         console.log(response.data.message)
         toast(response.data.message)
     };
@@ -105,7 +115,26 @@ const DoctorKyc = () => {
                                 <Form className="space-y-6">
                                     {/* Personal Information */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        {/* Image URL */}
                                         <div className="space-y-2">
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                                Profile Picture
+                                            </label>
+                                            <Field
+                                                type="file"
+                                                onChange={(e) => setUplodedFiles(e.target.files[0])}
+                                                name="imageUrl"
+                                                className="w-full p-3 border border-yellow-500 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all"
+                                                placeholder="https://example.com/food-image.jpg"
+                                            />
+                                            <ErrorMessage
+                                                name="imageUrl"
+                                                component="div"
+                                                className="text-red-500 text-sm mt-1"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+
                                             <Label htmlFor="fullname" className="text-green-700 font-medium">
                                                 Full Name *
                                             </Label>
@@ -114,6 +143,20 @@ const DoctorKyc = () => {
                                                 id="fullname"
                                                 name="fullname"
                                                 placeholder="Enter your full name"
+                                                className="border-green-200 focus:border-green-500 focus:ring-green-500"
+                                            />
+                                            <ErrorMessage name="fullname" component="div" className="text-red-500 text-sm" />
+                                        </div>
+                                        <div className="space-y-2">
+
+                                            <Label htmlFor="price" className="text-green-700 font-medium">
+                                                Price
+                                            </Label>
+                                            <Field
+                                                as={Input}
+                                                id="price"
+                                                name="price"
+                                                placeholder="रु ७००"
                                                 className="border-green-200 focus:border-green-500 focus:ring-green-500"
                                             />
                                             <ErrorMessage name="fullname" component="div" className="text-red-500 text-sm" />

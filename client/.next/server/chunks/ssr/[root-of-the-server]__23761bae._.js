@@ -420,7 +420,7 @@ const SignIn = ()=>{
     // Redirect when logged in
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if (isLoggedIn && role === 'patient') router.push('/users/patient/profile');
-        if (isLoggedIn && role === 'doctor') router.push('/users/doctor/profile');
+        if (isLoggedIn && role === 'doctor') router.push('/users/doctor/appointment');
         if (isLoggedIn && role === 'admin') router.push('/admin/appointment');
     }, [
         isLoggedIn,
@@ -441,7 +441,7 @@ const SignIn = ()=>{
                 dispatch((0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$redux$2f$reducerSlices$2f$userSlice$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["addLoginDetails"])(data));
             }
             if (data?.isLoggedIn && data?.role === 'patient') router.push('/users/patient/profile');
-            if (data?.isLoggedIn && data?.role === 'doctor') router.push('/users/doctor/profile');
+            if (data?.isLoggedIn && data?.role === 'doctor') router.push('/users/doctor/appointment');
             if (data?.isLoggedIn && data?.role === 'admin') router.push('/admin/appointment');
         } catch (error) {
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(error?.response?.data?.message || 'An error occurred during sign in');

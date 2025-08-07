@@ -15,14 +15,31 @@ import { Calendar, Clock, User, CheckCircle, XCircle, FileText, Activity } from 
 import { format } from 'date-fns';
 import apiClient from '@/app/api-client';
 
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
 
 const Appoinment = () => {
   const [appointments, setAppointment] = useState([]);
-
+  const [page, setPage] = useState(1)
+  const [total, setTotal] = useState(0)
+  const [totalPages, setTotalPages] = useState(4)
+  const [booked, setBooked] = useState(0)
+  const [unBooked, setUnbooked] = useState(0)
   const fetchAppoinment = async () => {
     try {
-      const response = await apiClient.get('/timeslot');
-      setAppointment(response.data);
+      const response = await apiClient.get(`/timeslot?limit=5&page=${page}`);
+      setAppointment(response.data.slots);
+      setTotal(response.data.totalAppointment);
+      setBooked(response.data.booked)
+      setUnbooked(response.data.unbooked)
     } catch (error) {
       console.error('Error fetching appointments:', error);
     }
@@ -30,7 +47,7 @@ const Appoinment = () => {
 
   useEffect(() => {
     fetchAppoinment();
-  }, []);
+  }, [page]);
 
   const [activeTab, setActiveTab] = useState<'booked' | 'unbooked'>('booked');
 
@@ -38,7 +55,95 @@ const Appoinment = () => {
   const bookedAppointments = appointments.filter(apt => apt.isBooked);
   const unbookedAppointments = appointments.filter(apt => !apt.isBooked);
   const currentAppointments = activeTab === 'booked' ? bookedAppointments : unbookedAppointments;
+  const generatePaginationItems = () => {
+    const items = []
+    const maxVisiblePages = 5
+    const halfVisible = Math.floor(maxVisiblePages / 2)
 
+    let startPage = Math.max(1, page - halfVisible)
+    let endPage = Math.min(totalPages, page + halfVisible)
+
+    // Adjust if we're near the beginning or end
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      if (startPage === 1) {
+        endPage = Math.min(totalPages, startPage + maxVisiblePages - 1)
+      } else {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1)
+      }
+    }
+
+    // Add first page and ellipsis if needed
+    if (startPage > 1) {
+      items.push(
+        <PaginationItem key="1">
+          <PaginationLink
+            href="#"
+            onClick={(e) => {
+              e.preventDefault()
+              setPage(1)
+            }}
+            className={page === 1 ? "bg-primary text-primary-foreground" : ""}
+          >
+            1
+          </PaginationLink>
+        </PaginationItem>,
+      )
+
+      if (startPage > 2) {
+        items.push(
+          <PaginationItem key="ellipsis-start">
+            <PaginationEllipsis />
+          </PaginationItem>,
+        )
+      }
+    }
+
+    // Add visible page numbers
+    for (let i = startPage; i <= endPage; i++) {
+      items.push(
+        <PaginationItem key={i}>
+          <PaginationLink
+            href="#"
+            onClick={(e) => {
+              e.preventDefault()
+              setPage(i)
+            }}
+            className={page === i ? "bg-primary text-primary-foreground" : ""}
+          >
+            {i}
+          </PaginationLink>
+        </PaginationItem>,
+      )
+    }
+
+    // Add ellipsis and last page if needed
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        items.push(
+          <PaginationItem key="ellipsis-end">
+            <PaginationEllipsis />
+          </PaginationItem>,
+        )
+      }
+
+      items.push(
+        <PaginationItem key={totalPages}>
+          <PaginationLink
+            href="#"
+            onClick={(e) => {
+              e.preventDefault()
+              setPage(totalPages)
+            }}
+            className={page === totalPages ? "bg-primary text-primary-foreground" : ""}
+          >
+            {totalPages}
+          </PaginationLink>
+        </PaginationItem>,
+      )
+    }
+
+    return items
+  }
   const getStatusColor = (status: string, isBooked: boolean) => {
     if (isBooked) {
       return 'bg-green-500 text-white hover:bg-green-600';
@@ -46,12 +151,7 @@ const Appoinment = () => {
     return 'bg-blue-500 text-white hover:bg-blue-600';
   };
 
-  const stats = {
-    total: appointments.length,
-    booked: bookedAppointments.length,
-    unbooked: unbookedAppointments.length,
-    withPrescription: appointments.filter(apt => apt.prescrption).length
-  };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-4 lg:p-8">
@@ -76,7 +176,7 @@ const Appoinment = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Total Appointments</p>
-                  <p className="text-3xl font-bold text-primary">{stats.total}</p>
+                  <p className="text-3xl font-bold text-primary">{total}</p>
                 </div>
                 <Calendar className="h-8 w-8 text-primary" />
               </div>
@@ -88,7 +188,7 @@ const Appoinment = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Booked</p>
-                  <p className="text-3xl font-bold text-green-600">{stats.booked}</p>
+                  <p className="text-3xl font-bold text-green-600">{booked}</p>
                 </div>
                 <CheckCircle className="h-8 w-8 text-green-600" />
               </div>
@@ -100,21 +200,9 @@ const Appoinment = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Available</p>
-                  <p className="text-3xl font-bold text-blue-600">{stats.unbooked}</p>
+                  <p className="text-3xl font-bold text-blue-600">{unBooked}</p>
                 </div>
                 <XCircle className="h-8 w-8 text-blue-600" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-purple-100">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">With Prescription</p>
-                  <p className="text-3xl font-bold text-purple-600">{stats.withPrescription}</p>
-                </div>
-                <FileText className="h-8 w-8 text-purple-600" />
               </div>
             </CardContent>
           </Card>
@@ -133,7 +221,7 @@ const Appoinment = () => {
                 className="flex items-center space-x-2 px-6 py-3"
               >
                 <CheckCircle className="h-4 w-4" />
-                <span>Booked Appointments ({stats.booked})</span>
+                <span>Booked Appointments ({booked})</span>
               </Button>
               <Button
                 variant={activeTab === 'unbooked' ? 'default' : 'outline'}
@@ -141,7 +229,7 @@ const Appoinment = () => {
                 className="flex items-center space-x-2 px-6 py-3"
               >
                 <XCircle className="h-4 w-4" />
-                <span>Available Slots ({stats.unbooked})</span>
+                <span>Available Slots ({unBooked})</span>
               </Button>
             </div>
           </CardContent>
@@ -276,6 +364,33 @@ const Appoinment = () => {
           </CardContent>
         </Card>
       </div>
+      <Pagination className='mt-3'>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious
+              href="#"
+              onClick={(e) => {
+                e.preventDefault()
+                if (page > 1) setPage(page - 1)
+              }}
+              className={page === 1 ? "pointer-events-none opacity-50" : ""}
+            />
+          </PaginationItem>
+
+          {generatePaginationItems()}
+
+          <PaginationItem>
+            <PaginationNext
+              href="#"
+              onClick={(e) => {
+                e.preventDefault()
+                if (page < totalPages) setPage(page + 1)
+              }}
+              className={page === totalPages ? "pointer-events-none opacity-50" : ""}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   );
 };

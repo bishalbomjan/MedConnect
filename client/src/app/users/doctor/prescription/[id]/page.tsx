@@ -77,6 +77,7 @@ const Prescription = () => {
         setIsSubmitting(true);
         try {
             const response = await apiClient.post(`/prescription/${id}`, values);
+            const res = await apiClient.patch(`/timeslot/completed/${id}`)
             toast(response.data.message);
             resetForm();
         } catch (error) {

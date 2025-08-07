@@ -1,8 +1,8 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { format } from "date-fns";
+
 import {
     Calendar,
     Clock,
@@ -48,7 +48,7 @@ const DoctorAppointments = () => {
 
     const fetchAppointments = async () => {
         const res = await apiClient.get(`/timeslot?doctorId=${_id}`);
-        setAppointments(res.data);
+        setAppointments(res.data.slots);
     };
 
     useEffect(() => {
@@ -59,7 +59,6 @@ const DoctorAppointments = () => {
         return {
             total: appointments.length,
             scheduled: appointments.filter((a) => a.status === "Schedual").length,
-            inProgress: appointments.filter((a) => a.status === "In Progress").length,
             completed: appointments.filter((a) => a.status === "Completed").length,
             cancelled: appointments.filter((a) => a.status === "Cancelled").length,
             booked: appointments.filter((a) => a.status === "Booked").length,
@@ -143,16 +142,10 @@ const DoctorAppointments = () => {
                             color: "text-medconnect-green",
                         },
                         {
-                            label: "Scheduled",
+                            label: "Unbooked",
                             count: statusCounts.scheduled,
                             icon: <Clock className="h-5 w-5 text-blue-600" />,
                             color: "text-blue-600",
-                        },
-                        {
-                            label: "In Progress",
-                            count: statusCounts.inProgress,
-                            icon: <div className="h-5 w-5 rounded-full bg-purple-500" />,
-                            color: "text-purple-600",
                         },
                         {
                             label: "Completed",
@@ -267,14 +260,13 @@ const DoctorAppointments = () => {
                                             </TableCell>
                                             <TableCell>
                                                 <div className="flex items-center space-x-2">
-                                                    <Phone className="h-4 w-4 text-gray-400" />
                                                     <span className="text-sm">{a.doctorId?.fullname || "-"}</span>
                                                 </div>
                                             </TableCell>
                                             <TableCell>
                                                 <div className="flex items-center space-x-2">
                                                     <Phone className="h-4 w-4 text-gray-400" />
-                                                    <span className="text-sm">{a?.patient?.phoneNumber || "-"}</span>
+                                                    <span className="text-sm">{a?.bookedById?.patient?.phoneNumber || "-"}</span>
                                                 </div>
                                             </TableCell>
                                             <TableCell>
@@ -309,6 +301,8 @@ const DoctorAppointments = () => {
                         </div>
                     </CardContent>
                 </Card>
+                hello
+
             </div>
         </div>
     );
