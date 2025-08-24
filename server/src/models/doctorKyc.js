@@ -7,20 +7,13 @@ const doctorSchema = new Schema({
   degree: { type: String, required: true },
   NMCID: { type: String, required: true },
   specializations: { type: [String], required: true },
-  experience: [
-    {
-      body: String,
-      date: Date,
-    },
-  ],
+  experience: String,
   experienceYear: String,
   price: { type: Number, required: true },
   doctor: { type: Schema.Types.ObjectId, ref: "User", required: true },
   isKycSubmitted: { type: Boolean, default: false },
   isKycApproved: { type: Boolean, default: false },
-
-  // ✅ Optional profile picture field
-  profilePicture: { type: String, required: false }, // You will store file path or filename here
+  uploadFiles: { type: String, required: false },
 });
 const Doctor = mongoose.model("DoctorKyc", doctorSchema);
 export default Doctor;

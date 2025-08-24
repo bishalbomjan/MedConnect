@@ -1,369 +1,435 @@
-'use client'
-import React, { useState } from 'react';
-import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Plus, Trash2, User, Award, FileText, Stethoscope } from 'lucide-react';
-import apiClient from '../api-client';
-import { useSelector } from 'react-redux';
-import { toast } from 'sonner';
+"use client";
+import React, { useState } from "react";
+import { Formik, Form, Field, FieldArray } from "formik";
+import * as Yup from "yup";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Plus,
+  X,
+  UserPlus,
+  GraduationCap,
+  Award,
+  Star,
+  DollarSign,
+} from "lucide-react";
+import { toast } from "sonner";
+import apiClient from "../api-client";
+import { useSelector } from "react-redux";
 
-// Validation schema using Yup
-const doctorKycSchema = Yup.object().shape({
-    fullname: Yup.string()
-        .min(2, 'Full name must be at least 2 characters')
-        .required('Full name is required'),
-    degree: Yup.string().required('Degree is required'),
-    NMCID: Yup.string()
-        .matches(/^[A-Z0-9]+$/, 'NMC ID must contain only uppercase letters and numbers')
-        .required('NMC ID is required'),
-    specializations: Yup.array()
-        .of(Yup.string().required('Specialization is required'))
-        .min(1, 'At least one specialization is required')
-        .required('Specializations are required'),
-    experience: Yup.array().of(
-        Yup.object().shape({
-            body: Yup.string().required('Experience description is required'),
-            date: Yup.date().required('Date is required'),
-        })
-    ),
-    experienceYear: Yup.string()
-        .matches(/^\d+$/, 'Experience year must be a number')
-        .required('Experience year is required'),
+// Colors (green + white theme)
+const theme = {
+  primary: "text-green-600",
+  bgPrimary: "bg-green-600",
+  bgLight: "bg-green-50",
+  borderLight: "border-green-300",
+  focus: "focus:border-green-600 focus:ring-green-200",
+};
+
+// Yup validation schema
+const doctorValidationSchema = Yup.object().shape({
+  fullname: Yup.string()
+    .min(2, "Full name must be at least 2 characters")
+    .required("Full name is required"),
+  degree: Yup.string()
+    .min(2, "Degree must be at least 2 characters")
+    .required("Degree is required"),
+  NMCID: Yup.string()
+    .min(3, "NMC ID must be at least 3 characters")
+    .required("NMC ID is required"),
+  specializations: Yup.array()
+    .of(Yup.string().required("Specialization cannot be empty"))
+    .min(1, "At least one specialization is required")
+    .required("Specializations are required"),
+  experience: Yup.string(),
+  experienceYear: Yup.string().matches(
+    /^\d+$/,
+    "Experience year must be a number"
+  ),
+  price: Yup.number()
+    .positive("Price must be a positive number")
+    .required("Price is required"),
 });
 
+// Initial form values
+const initialValues = {
+  uploadFiles: "",
+  fullname: "",
+  degree: "",
+  NMCID: "",
+  specializations: [""],
+  experience: "",
+  experienceYear: "",
+  price: "",
+};
+
 const specializationOptions = [
-    'Cardiology',
-    'Dermatology',
-    'Emergency Medicine',
-    'Endocrinology',
-    'Family Medicine',
-    'Gastroenterology',
-    'General Surgery',
-    'Internal Medicine',
-    'Neurology',
-    'Obstetrics and Gynecology',
-    'Oncology',
-    'Ophthalmology',
-    'Orthopedics',
-    'Pediatrics',
-    'Psychiatry',
-    'Radiology',
-    'Urology',
+  "Cardiology",
+  "Dermatology",
+  "Emergency Medicine",
+  "Endocrinology",
+  "Family Medicine",
+  "Gastroenterology",
+  "General Surgery",
+  "Internal Medicine",
+  "Neurology",
+  "Obstetrics and Gynecology",
+  "Oncology",
+  "Ophthalmology",
+  "Orthopedics",
+  "Pediatrics",
+  "Psychiatry",
+  "Radiology",
+  "Urology",
 ];
 
 const DoctorKyc = () => {
-    const initialValues = {
-        fullname: '',
-        degree: '',
-        NMCID: '',
-        price: "",
-        specializations: [''],
-        experience: [{ body: '', date: '' }],
-        experienceYear: '', // NEW
-    };
-    const [uplodedFiles, setUplodedFiles] = useState([])
-    const { _id } = useSelector(state => state.user)
-    const handleSubmit = async (values: any) => {
-        const formData = new FormData()
-        formData.append('uplodedFiles', uplodedFiles)
-        formData.append('fullname', values.fullname)
-        formData.append('degree', values.degree)
-        formData.append('NMCID', values.NMCID)
-        formData.append('price', values.price)
-        formData.append('specializations', values.specializations)
-        formData.append('experience', values.experience)
-        formData.append('experienceYear', values.experienceYear)
-        const response = await apiClient.post(`/doctorkycs/${_id}`, formData)
-        console.log(response.data.message)
-        toast(response.data.message)
-    };
+  const [uploadFiles, setUploadedFiles] = useState("");
+  const { _id } = useSelector((state) => state.user);
+  const handleFormSubmit = async (values: any) => {
+    const formData = new FormData();
+    formData.append("uploadFiles", uploadFiles);
+    formData.append("fullname", values.fullname);
+    formData.append("degree", values.degree);
+    formData.append("NMCID", values.NMCID);
+    formData.append("price", values.price);
+    formData.append("specializations", values.specializations);
+    formData.append("experience", values.experience);
+    formData.append("experienceYear", values.experienceYear);
+    console.log("Doctor Registration Data:", values);
+    const response = await apiClient.post(`/doctorkycs/${_id}`, formData);
 
-    return (
-        <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-50 py-8 px-4">
-            <div className="max-w-4xl mx-auto">
-                {/* Header */}
-                <div className="text-center mb-8">
-                    <div className="flex items-center justify-center mb-4">
-                        <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
-                            <User className="w-6 h-6 text-white" />
-                        </div>
-                    </div>
-                    <h1 className="text-3xl font-bold text-green-800 mb-2">Doctor KYC Verification</h1>
-                    <p className="text-green-600">Complete your profile to join MedConnect</p>
-                </div>
+    toast(response.data.message);
+  };
 
-                <Card className="border-green-200 shadow-lg">
-                    <CardHeader className="bg-green-50 border-b border-green-100">
-                        <CardTitle className="text-green-800 flex items-center">
-                            <FileText className="w-5 h-5 mr-2" />
-                            Professional Information
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-6">
-                        <Formik
-                            initialValues={initialValues}
-                            validationSchema={doctorKycSchema}
-                            onSubmit={handleSubmit}
-                        >
-                            {({ values, setFieldValue, isSubmitting }) => (
-                                <Form className="space-y-6">
-                                    {/* Personal Information */}
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        {/* Image URL */}
-                                        <div className="space-y-2">
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                                                Profile Picture
-                                            </label>
-                                            <Field
-                                                type="file"
-                                                onChange={(e) => setUplodedFiles(e.target.files[0])}
-                                                name="imageUrl"
-                                                className="w-full p-3 border border-yellow-500 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all"
-                                                placeholder="https://example.com/food-image.jpg"
-                                            />
-                                            <ErrorMessage
-                                                name="imageUrl"
-                                                component="div"
-                                                className="text-red-500 text-sm mt-1"
-                                            />
-                                        </div>
-                                        <div className="space-y-2">
-
-                                            <Label htmlFor="fullname" className="text-green-700 font-medium">
-                                                Full Name *
-                                            </Label>
-                                            <Field
-                                                as={Input}
-                                                id="fullname"
-                                                name="fullname"
-                                                placeholder="Enter your full name"
-                                                className="border-green-200 focus:border-green-500 focus:ring-green-500"
-                                            />
-                                            <ErrorMessage name="fullname" component="div" className="text-red-500 text-sm" />
-                                        </div>
-                                        <div className="space-y-2">
-
-                                            <Label htmlFor="price" className="text-green-700 font-medium">
-                                                Price
-                                            </Label>
-                                            <Field
-                                                as={Input}
-                                                id="price"
-                                                name="price"
-                                                placeholder="रु ७००"
-                                                className="border-green-200 focus:border-green-500 focus:ring-green-500"
-                                            />
-                                            <ErrorMessage name="fullname" component="div" className="text-red-500 text-sm" />
-                                        </div>
-                                        <div className="space-y-2">
-                                            <Label htmlFor="degree" className="text-green-700 font-medium">
-                                                Medical Degree *
-                                            </Label>
-                                            <Field
-                                                as={Input}
-                                                id="degree"
-                                                name="degree"
-                                                placeholder="e.g., MBBS, MD, MS"
-                                                className="border-green-200 focus:border-green-500 focus:ring-green-500"
-                                            />
-                                            <ErrorMessage name="degree" component="div" className="text-red-500 text-sm" />
-                                        </div>
-                                    </div>
-
-                                    {/* NMC ID */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="NMCID" className="text-green-700 font-medium">
-                                            NMC Registration ID *
-                                        </Label>
-                                        <Field
-                                            as={Input}
-                                            id="NMCID"
-                                            name="NMCID"
-                                            placeholder="Enter your NMC registration number"
-                                            className="border-green-200 focus:border-green-500 focus:ring-green-500"
-                                        />
-                                        <ErrorMessage name="NMCID" component="div" className="text-red-500 text-sm" />
-                                    </div>
-
-                                    {/* Experience Year */}
-                                    <div className="space-y-2">
-                                        <Label htmlFor="experienceYear" className="text-green-700 font-medium">
-                                            Total Years of Experience *
-                                        </Label>
-                                        <Field
-                                            as={Input}
-                                            id="experienceYear"
-                                            name="experienceYear"
-                                            placeholder="Enter total years of experience"
-                                            className="border-green-200 focus:border-green-500 focus:ring-green-500"
-                                        />
-                                        <ErrorMessage name="experienceYear" component="div" className="text-red-500 text-sm" />
-                                    </div>
-
-                                    {/* Specializations */}
-                                    <div className="space-y-4">
-                                        <Label className="text-green-700 font-medium flex items-center">
-                                            <Stethoscope className="w-4 h-4 mr-2" />
-                                            Specializations *
-                                        </Label>
-                                        <FieldArray name="specializations">
-                                            {({ push, remove }) => (
-                                                <div className="space-y-3">
-                                                    {values.specializations.map((specialization, index) => (
-                                                        <div key={index} className="flex items-center space-x-2">
-                                                            <div className="flex-1">
-                                                                <Select
-                                                                    value={specialization}
-                                                                    onValueChange={(value) => setFieldValue(`specializations.${index}`, value)}
-                                                                >
-                                                                    <SelectTrigger className="border-green-200 focus:border-green-500">
-                                                                        <SelectValue placeholder="Select a specialization" />
-                                                                    </SelectTrigger>
-                                                                    <SelectContent>
-                                                                        {specializationOptions.map((option) => (
-                                                                            <SelectItem key={option} value={option}>
-                                                                                {option}
-                                                                            </SelectItem>
-                                                                        ))}
-                                                                    </SelectContent>
-                                                                </Select>
-                                                                <ErrorMessage
-                                                                    name={`specializations.${index}`}
-                                                                    component="div"
-                                                                    className="text-red-500 text-sm mt-1"
-                                                                />
-                                                            </div>
-                                                            {values.specializations.length > 1 && (
-                                                                <Button
-                                                                    type="button"
-                                                                    variant="outline"
-                                                                    size="sm"
-                                                                    onClick={() => remove(index)}
-                                                                    className="border-red-300 text-red-600 hover:bg-red-50"
-                                                                >
-                                                                    <Trash2 className="w-4 h-4" />
-                                                                </Button>
-                                                            )}
-                                                        </div>
-                                                    ))}
-                                                    <Button
-                                                        type="button"
-                                                        variant="outline"
-                                                        onClick={() => push('')}
-                                                        className="border-green-300 text-green-600 hover:bg-green-50"
-                                                    >
-                                                        <Plus className="w-4 h-4 mr-2" />
-                                                        Add Specialization
-                                                    </Button>
-                                                </div>
-                                            )}
-                                        </FieldArray>
-                                    </div>
-
-                                    {/* Experience Section */}
-                                    <div className="space-y-4">
-                                        <Label className="text-green-700 font-medium flex items-center">
-                                            <Award className="w-4 h-4 mr-2" />
-                                            Professional Experience
-                                        </Label>
-                                        <FieldArray name="experience">
-                                            {({ push, remove }) => (
-                                                <div className="space-y-4">
-                                                    {values.experience.map((exp, index) => (
-                                                        <Card key={index} className="border-green-100">
-                                                            <CardContent className="p-4">
-                                                                <div className="flex justify-between items-start mb-3">
-                                                                    <h4 className="font-medium text-green-800">Experience {index + 1}</h4>
-                                                                    {values.experience.length > 1 && (
-                                                                        <Button
-                                                                            type="button"
-                                                                            variant="outline"
-                                                                            size="sm"
-                                                                            onClick={() => remove(index)}
-                                                                            className="border-red-300 text-red-600 hover:bg-red-50"
-                                                                        >
-                                                                            <Trash2 className="w-4 h-4" />
-                                                                        </Button>
-                                                                    )}
-                                                                </div>
-                                                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                                                    <div className="md:col-span-2 space-y-2">
-                                                                        <Label htmlFor={`experience.${index}.body`} className="text-green-700">
-                                                                            Description
-                                                                        </Label>
-                                                                        <Field
-                                                                            as={Textarea}
-                                                                            id={`experience.${index}.body`}
-                                                                            name={`experience.${index}.body`}
-                                                                            placeholder="Describe your role, responsibilities, and achievements"
-                                                                            className="border-green-200 focus:border-green-500 focus:ring-green-500"
-                                                                            rows={3}
-                                                                        />
-                                                                        <ErrorMessage
-                                                                            name={`experience.${index}.body`}
-                                                                            component="div"
-                                                                            className="text-red-500 text-sm"
-                                                                        />
-                                                                    </div>
-                                                                    <div className="space-y-2">
-                                                                        <Label htmlFor={`experience.${index}.date`} className="text-green-700">
-                                                                            Date
-                                                                        </Label>
-                                                                        <Field
-                                                                            as={Input}
-                                                                            type="date"
-                                                                            id={`experience.${index}.date`}
-                                                                            name={`experience.${index}.date`}
-                                                                            className="border-green-200 focus:border-green-500 focus:ring-green-500"
-                                                                        />
-                                                                        <ErrorMessage
-                                                                            name={`experience.${index}.date`}
-                                                                            component="div"
-                                                                            className="text-red-500 text-sm"
-                                                                        />
-                                                                    </div>
-                                                                </div>
-                                                            </CardContent>
-                                                        </Card>
-                                                    ))}
-                                                    <Button
-                                                        type="button"
-                                                        variant="outline"
-                                                        onClick={() => push({ body: '', date: '' })}
-                                                        className="border-green-300 text-green-600 hover:bg-green-50"
-                                                    >
-                                                        <Plus className="w-4 h-4 mr-2" />
-                                                        Add Experience
-                                                    </Button>
-                                                </div>
-                                            )}
-                                        </FieldArray>
-                                    </div>
-
-                                    {/* Submit Button */}
-                                    <div className="flex justify-center pt-6">
-                                        <Button
-                                            type="submit"
-                                            disabled={isSubmitting}
-                                            className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg"
-                                        >
-                                            {isSubmitting ? 'Submitting...' : 'Submit KYC Application'}
-                                        </Button>
-                                    </div>
-                                </Form>
-                            )}
-                        </Formik>
-                    </CardContent>
-                </Card>
-            </div>
+  return (
+    <div className="min-h-screen bg-white p-4 lg:p-8">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-green-600 mb-2">
+            Doctor Registration
+          </h1>
+          <p className="text-gray-600 text-lg">
+            Complete your professional profile to start accepting patients
+          </p>
         </div>
-    );
+
+        <Card className="shadow-lg border border-green-200">
+          <CardHeader className="bg-gradient-to-r from-green-600 to-green-500 text-white">
+            <CardTitle className="flex items-center gap-2 text-2xl">
+              <UserPlus className="h-6 w-6" />
+              Professional Information
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-8 bg-white">
+            <Formik
+              initialValues={initialValues}
+              validationSchema={doctorValidationSchema}
+              onSubmit={handleFormSubmit}
+            >
+              {({ errors, touched, values }) => (
+                <Form className="space-y-8">
+                  {/* Personal Information Section */}
+                  <div className="space-y-6">
+                    <h3
+                      className={`text-xl font-semibold ${theme.primary} flex items-center gap-2`}
+                    >
+                      <GraduationCap className="h-5 w-5" />
+                      Personal Details
+                    </h3>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Profile Picture
+                        </label>
+                        <Field
+                          type="file"
+                          onChange={(e) => setUploadedFiles(e.target.files[0])}
+                          name="uploadFiles"
+                          className="w-full p-3 border border-yellow-500 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all"
+                          placeholder="https://example.com/food-image.jpg"
+                        />
+                        {errors.uploadFiles && touched.uploadFiles && (
+                          <p className="text-red-500 text-sm">
+                            {String(errors.uploadFiles)}
+                          </p>
+                        )}
+                      </div>
+                      <div className="space-y-2">
+                        <Label
+                          htmlFor="fullname"
+                          className="text-green-700 font-medium"
+                        >
+                          Full Name *
+                        </Label>
+                        <Field
+                          as={Input}
+                          id="fullname"
+                          name="fullname"
+                          placeholder="Enter your full name"
+                          className={`${theme.borderLight} ${theme.focus} ${
+                            errors.fullname && touched.fullname
+                              ? "border-red-500"
+                              : ""
+                          }`}
+                        />
+                        {errors.fullname && touched.fullname && (
+                          <p className="text-red-500 text-sm">
+                            {String(errors.fullname)}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label
+                          htmlFor="NMCID"
+                          className="text-green-700 font-medium"
+                        >
+                          NMC ID *
+                        </Label>
+                        <Field
+                          as={Input}
+                          id="NMCID"
+                          name="NMCID"
+                          placeholder="Enter your NMC ID"
+                          className={`${theme.borderLight} ${theme.focus} ${
+                            errors.NMCID && touched.NMCID
+                              ? "border-red-500"
+                              : ""
+                          }`}
+                        />
+                        {errors.NMCID && touched.NMCID && (
+                          <p className="text-red-500 text-sm">
+                            {String(errors.NMCID)}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Professional Information Section */}
+                  <div className="space-y-6">
+                    <h3
+                      className={`text-xl font-semibold ${theme.primary} flex items-center gap-2`}
+                    >
+                      <Award className="h-5 w-5" />
+                      Professional Qualifications
+                    </h3>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <Label
+                          htmlFor="degree"
+                          className="text-green-700 font-medium"
+                        >
+                          Degree *
+                        </Label>
+                        <Field
+                          as={Input}
+                          id="degree"
+                          name="degree"
+                          placeholder="e.g., MBBS, MD, MS"
+                          className={`${theme.borderLight} ${theme.focus} ${
+                            errors.degree && touched.degree
+                              ? "border-red-500"
+                              : ""
+                          }`}
+                        />
+                        {errors.degree && touched.degree && (
+                          <p className="text-red-500 text-sm">
+                            {String(errors.degree)}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label
+                          htmlFor="experienceYear"
+                          className="text-green-700 font-medium"
+                        >
+                          Years of Experience
+                        </Label>
+                        <Field
+                          as={Input}
+                          id="experienceYear"
+                          name="experienceYear"
+                          type="number"
+                          placeholder="Enter years of experience"
+                          className={`${theme.borderLight} ${theme.focus} ${
+                            errors.experienceYear && touched.experienceYear
+                              ? "border-red-500"
+                              : ""
+                          }`}
+                        />
+                        {errors.experienceYear && touched.experienceYear && (
+                          <p className="text-red-500 text-sm">
+                            {String(errors.experienceYear)}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="experience"
+                        className="text-green-700 font-medium"
+                      >
+                        Experience Description
+                      </Label>
+                      <Field
+                        as={Textarea}
+                        id="experience"
+                        name="experience"
+                        placeholder="Describe your professional experience..."
+                        className={`min-h-[100px] ${theme.borderLight} ${theme.focus}`}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Specializations Section */}
+                  <div className="space-y-6">
+                    <h3
+                      className={`text-xl font-semibold ${theme.primary} flex items-center gap-2`}
+                    >
+                      <Star className="h-5 w-5" />
+                      Specializations
+                    </h3>
+
+                    <FieldArray name="specializations">
+                      {({ remove, push }) => (
+                        <div className="space-y-4">
+                          {values.specializations.map((_, index) => (
+                            <div key={index} className="flex gap-3 items-start">
+                              <div className="flex-1 space-y-2">
+                                <Field name={`specializations.${index}`}>
+                                  {({ field, form }: any) => (
+                                    <Select
+                                      value={field.value}
+                                      onValueChange={(value) =>
+                                        form.setFieldValue(field.name, value)
+                                      }
+                                    >
+                                      <SelectTrigger
+                                        className={`${theme.borderLight} ${theme.focus}`}
+                                      >
+                                        <SelectValue placeholder="Select specialization" />
+                                      </SelectTrigger>
+                                      <SelectContent className="bg-white border-green-200">
+                                        {specializationOptions.map((option) => (
+                                          <SelectItem
+                                            key={option}
+                                            value={option}
+                                            className="hover:bg-green-50 hover:text-green-700 cursor-pointer"
+                                          >
+                                            {option}
+                                          </SelectItem>
+                                        ))}
+                                      </SelectContent>
+                                    </Select>
+                                  )}
+                                </Field>
+                              </div>
+                              {values.specializations.length > 1 && (
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  size="icon"
+                                  onClick={() => remove(index)}
+                                  className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                                >
+                                  <X className="h-4 w-4" />
+                                </Button>
+                              )}
+                            </div>
+                          ))}
+                          <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => push("")}
+                            className="border-green-600 text-green-600 hover:bg-green-50"
+                          >
+                            <Plus className="h-4 w-4 mr-2" />
+                            Add Specialization
+                          </Button>
+                          {errors.specializations &&
+                            touched.specializations && (
+                              <p className="text-red-500 text-sm">
+                                {String(errors.specializations)}
+                              </p>
+                            )}
+                        </div>
+                      )}
+                    </FieldArray>
+                  </div>
+
+                  {/* Pricing Section */}
+                  <div className="space-y-6">
+                    <h3
+                      className={`text-xl font-semibold ${theme.primary} flex items-center gap-2`}
+                    >
+                      <DollarSign className="h-5 w-5" />
+                      Consultation Fee
+                    </h3>
+
+                    <div className="max-w-md">
+                      <div className="space-y-2">
+                        <Label
+                          htmlFor="price"
+                          className="text-green-700 font-medium"
+                        >
+                          Consultation Price (NPR) *
+                        </Label>
+                        <Field
+                          as={Input}
+                          id="price"
+                          name="price"
+                          type="number"
+                          placeholder="Enter consultation fee"
+                          className={`${theme.borderLight} ${theme.focus} ${
+                            errors.price && touched.price
+                              ? "border-red-500"
+                              : ""
+                          }`}
+                        />
+                        {errors.price && touched.price && (
+                          <p className="text-red-500 text-sm">
+                            {String(errors.price)}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <div className="pt-8 border-t border-green-200">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
+                    >
+                      <UserPlus className="h-5 w-5 mr-2" />
+                      Complete Registration
+                    </Button>
+                  </div>
+                </Form>
+              )}
+            </Formik>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
 };
 
 export default DoctorKyc;

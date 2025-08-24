@@ -7,6 +7,7 @@ import routerPatient from "./routes/patientkyc.js";
 import timeSlotRoute from "./routes/timeSlot.js";
 import prescriptionRoute from "./routes/prescription.js";
 const app = express();
+app.use("/images", express.static("uploads"));
 const port = 8080;
 dbConnect();
 app.use(cors());

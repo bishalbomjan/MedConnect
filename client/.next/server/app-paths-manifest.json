@@ -1,4 +1,7 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/users/doctor/appointment/page": "app/users/doctor/appointment/page.js"
+  "/users/doctor/appointment/page": "app/users/doctor/appointment/page.js",
+  "/users/doctor/profile/page": "app/users/doctor/profile/page.js",
+  "/users/doctor/timeSlot/page": "app/users/doctor/timeSlot/page.js"
 }

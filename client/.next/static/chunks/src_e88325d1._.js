@@ -115,9 +115,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$red
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$skeleton$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/skeleton.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/badge.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$api$2d$client$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/api-client.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 ;
@@ -128,7 +130,7 @@ function DoctorProfile() {
     const { _id, email } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$react$2d$redux$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSelector"])({
         "DoctorProfile.useSelector": (state)=>state.user
     }["DoctorProfile.useSelector"]);
-    const [profile, setProfile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [profile, setProfile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const fetchDoctorProfile = async ()=>{
         try {
@@ -150,6 +152,7 @@ function DoctorProfile() {
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "DoctorProfile.useEffect": ()=>{
             fetchDoctorProfile();
+            debugger;
         }
     }["DoctorProfile.useEffect"], []);
     if (loading) {
@@ -160,35 +163,35 @@ function DoctorProfile() {
                     className: "h-8 w-1/3"
                 }, void 0, false, {
                     fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                    lineNumber: 54,
-                    columnNumber: 17
+                    lineNumber: 41,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$skeleton$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Skeleton"], {
                     className: "h-6 w-1/2"
                 }, void 0, false, {
                     fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                    lineNumber: 55,
-                    columnNumber: 17
+                    lineNumber: 42,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$skeleton$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Skeleton"], {
                     className: "h-6 w-1/2"
                 }, void 0, false, {
                     fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                    lineNumber: 56,
-                    columnNumber: 17
+                    lineNumber: 43,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$skeleton$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Skeleton"], {
                     className: "h-40 w-full"
                 }, void 0, false, {
                     fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                    lineNumber: 57,
-                    columnNumber: 17
+                    lineNumber: 44,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-            lineNumber: 53,
-            columnNumber: 13
+            lineNumber: 40,
+            columnNumber: 7
         }, this);
     }
     if (!profile) {
@@ -202,8 +205,8 @@ function DoctorProfile() {
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-            lineNumber: 63,
-            columnNumber: 16
+            lineNumber: 51,
+            columnNumber: 7
         }, this);
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -214,19 +217,32 @@ function DoctorProfile() {
                 children: "Doctor Profile"
             }, void 0, false, {
                 fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                lineNumber: 68,
-                columnNumber: 13
+                lineNumber: 59,
+                columnNumber: 7
             }, this),
             profile.isKycSubmitted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "space-y-3",
                 children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                        style: {
+                            borderRadius: "50%"
+                        },
+                        src: `http://localhost:8080/images/${profile.uploadFiles}`,
+                        alt: "Profile Picture",
+                        width: 100,
+                        height: 100
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/users/doctor/profile/page.tsx",
+                        lineNumber: 64,
+                        columnNumber: 11
+                    }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "text-lg font-semibold",
                         children: profile.fullname
                     }, void 0, false, {
                         fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                        lineNumber: 73,
-                        columnNumber: 21
+                        lineNumber: 71,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "text-gray-600",
@@ -236,8 +252,8 @@ function DoctorProfile() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                        lineNumber: 74,
-                        columnNumber: 21
+                        lineNumber: 72,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "text-gray-600",
@@ -247,8 +263,8 @@ function DoctorProfile() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                        lineNumber: 75,
-                        columnNumber: 21
+                        lineNumber: 73,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex flex-wrap gap-2",
@@ -256,13 +272,13 @@ function DoctorProfile() {
                                 children: spec
                             }, spec, false, {
                                 fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                                lineNumber: 78,
-                                columnNumber: 29
+                                lineNumber: 76,
+                                columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                        lineNumber: 76,
-                        columnNumber: 21
+                        lineNumber: 74,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "text-gray-600",
@@ -272,8 +288,8 @@ function DoctorProfile() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                        lineNumber: 81,
-                        columnNumber: 21
+                        lineNumber: 79,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         children: [
@@ -283,38 +299,20 @@ function DoctorProfile() {
                             }, void 0, false, {
                                 fileName: "[project]/src/app/users/doctor/profile/page.tsx",
                                 lineNumber: 83,
-                                columnNumber: 25
+                                columnNumber: 13
                             }, this),
-                            profile.experience?.length ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                className: "list-disc list-inside",
-                                children: profile.experience.map((exp, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                        children: [
-                                            exp.body,
-                                            " (",
-                                            new Date(exp.date).toLocaleDateString(),
-                                            ")"
-                                        ]
-                                    }, idx, true, {
-                                        fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                                        lineNumber: 87,
-                                        columnNumber: 37
-                                    }, this))
+                            profile.experience ? profile.experience : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                children: "No Exprience"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                                lineNumber: 85,
-                                columnNumber: 29
-                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                children: "No experience records."
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                                lineNumber: 93,
-                                columnNumber: 29
+                                lineNumber: 84,
+                                columnNumber: 56
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/users/doctor/profile/page.tsx",
                         lineNumber: 82,
-                        columnNumber: 21
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "mt-4",
@@ -323,19 +321,19 @@ function DoctorProfile() {
                             children: profile.isKycApproved ? "KYC Approved" : "KYC Pending"
                         }, void 0, false, {
                             fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                            lineNumber: 97,
-                            columnNumber: 25
+                            lineNumber: 87,
+                            columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                        lineNumber: 96,
-                        columnNumber: 21
+                        lineNumber: 86,
+                        columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                lineNumber: 72,
-                columnNumber: 17
+                lineNumber: 63,
+                columnNumber: 9
             }, this) : // If KYC is not submitted, show basic user info
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "space-y-3",
@@ -345,8 +343,8 @@ function DoctorProfile() {
                         children: profile.email
                     }, void 0, false, {
                         fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                        lineNumber: 105,
-                        columnNumber: 21
+                        lineNumber: 95,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "text-gray-600",
@@ -356,8 +354,8 @@ function DoctorProfile() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                        lineNumber: 106,
-                        columnNumber: 21
+                        lineNumber: 96,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "text-gray-600",
@@ -367,30 +365,30 @@ function DoctorProfile() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                        lineNumber: 107,
-                        columnNumber: 21
+                        lineNumber: 97,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
                         children: "Basic Profile"
                     }, void 0, false, {
                         fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                        lineNumber: 108,
-                        columnNumber: 21
+                        lineNumber: 98,
+                        columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-                lineNumber: 104,
-                columnNumber: 17
+                lineNumber: 94,
+                columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/users/doctor/profile/page.tsx",
-        lineNumber: 67,
-        columnNumber: 9
+        lineNumber: 58,
+        columnNumber: 5
     }, this);
 }
-_s(DoctorProfile, "30c99wCOQKtdzheXTx+N7zg2bB0=", false, function() {
+_s(DoctorProfile, "bphsMUXn20byKp3ZThqfHzyLUtQ=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$redux$2f$dist$2f$react$2d$redux$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSelector"]
     ];
